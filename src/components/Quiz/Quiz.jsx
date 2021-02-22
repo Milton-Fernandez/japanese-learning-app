@@ -7,6 +7,7 @@ function Quiz(){
     const dispatch = useDispatch();
     const dataStore = useSelector(store => store.data);
     const [quiz, setNewQuiz] = useState([]);
+    const [num, setNewNum] = useState(0);
 //function to pick a quiz by its title
     function getByTitle(){
         let title = 'hiragana';
@@ -16,17 +17,17 @@ function Quiz(){
                 newQuiz.push(dataStore[i]);
             } 
         }
-
-    function loopQuiz(quiz){
-
-    }
-       setNewQuiz(newQuiz);
-     
+       setNewQuiz(newQuiz); 
+       setNewNum(loopQuiz(quiz));
         return ;
     }
+    //loop through quiz and display on DOM
+    function loopQuiz(quiz) {
+        let n = quiz.length;
+        let x = Math.floor((Math.random() * n) + 0);
+        return x;
+    }
 
-console.log(quiz);
-    console.log(quiz[1]);
     useEffect(()=>{
         dispatch({type:'FETCH_DATA'});
     },[]);
@@ -36,12 +37,12 @@ console.log(quiz);
         <div>
             {quiz.length == 0 ?
             <p></p>:
-            <p class="font_size">{quiz[1].japanese}</p>
+            <p class="font_size">{quiz[num].japanese}</p>
 
             }
            
             <input placeholder="Answer"></input>
-            <button  >Submit</button>
+            <button onClick={loopQuiz}>Submit</button>
 
         </div>
 
