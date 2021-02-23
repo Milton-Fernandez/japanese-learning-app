@@ -82,20 +82,20 @@ function App() {
             <LoginPage />
           </ProtectedRoute>
           {/* path for quiz page*/}
-          <ProtectedRoute
+          <Route
 
           exact
           path= "/quiz" 
           >
             <Quiz />
-          </ProtectedRoute>
-          <ProtectedRoute
+          </Route>
+          <Route
 
             exact
             path="/flashcards"
           >
             <Flashcards />
-          </ProtectedRoute>
+          </Route>
           <ProtectedRoute
             // with authRedirect:
             // - if logged in, redirects to "/user"
