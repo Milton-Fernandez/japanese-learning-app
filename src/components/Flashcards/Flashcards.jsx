@@ -53,7 +53,7 @@ console.log(flashcard);
             <p class="font_size">{flashcard[num].japanese}</p>
          }
         <button onClick={() => setNewNum(num - 1)}> <p> <i class="arrow left"></i></p> </button>
-        <p>This is the number in the position:{num} </p>
+        <p>This is the number in the position:  {num}/{flashcard.length} </p>
         <button onClick={() => setNewNum(num+1) }> <p> <i class="arrow right"></i></p> </button>
        
         </div>
