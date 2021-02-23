@@ -20,24 +20,36 @@ function Quiz(){
                 newQuiz.push(dataStore[i]);
             } 
         }
-       setNewQuiz(newQuiz); 
+        setNewQuiz(newQuiz); 
         setCorrect(0);
         setIncorrect(0);
+        setNewNum(0);
         return ;
     }
 
     //loop through quiz and display on DOM
     function handleSubmit(event) {
         event.preventDefault();
+            if(quiz.length == 0){
+                setNewQuiz({english:'english'});
+            }
             if(quiz[num].english == answer){
                 console.log('Hey your correct');
                 setCorrect(correct+1);
+                setNewNum(num+1);
             }
             else{
                 console.log('incorrect');
                 setIncorrect(incorrect+1);
+                setNewNum(num + 1);
         }
             setAnswer('');
+        if((quiz.length-1) == num){
+            alert('finished quiz');
+            setNewNum(0);
+            setCorrect(0);
+            setIncorrect(0);
+        }
 
     }
 
@@ -50,6 +62,8 @@ function Quiz(){
         <h2>Select Quiz</h2>
             <button value="hiragana" onClick={(e) => getByTitle(e.target.value)}>Hiragana</button>
             <button value="katakana" onClick={(e) => getByTitle(e.target.value)}>Katakana</button>
+        {quiz.length == 0?<p></p>:
+        <div>
         <div>
             {quiz.length == 0 ?
             <p></p>:
@@ -65,6 +79,10 @@ function Quiz(){
         <div>
             <p>Correct:{correct}</p> <p>Incorrect:{incorrect}</p>
         </div>
+        </div>
+}
+
+
         </div>
 
         </>
