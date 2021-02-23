@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/',(req,res) => {
     console.log('retrieving data');
-    const queryText = 'SELECT * FROM "data";';
+    const queryText = 'SELECT * FROM "data" ORDER BY RANDOM();';
     pool.query(queryText).then(response =>{
         console.log('Retrieved all data');
         res.status(200).send(response.rows);

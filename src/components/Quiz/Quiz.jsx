@@ -24,6 +24,7 @@ function Quiz(){
         setCorrect(0);
         setIncorrect(0);
         setNewNum(0);
+        dispatch({ type: 'FETCH_DATA' });
         return ;
     }
 
