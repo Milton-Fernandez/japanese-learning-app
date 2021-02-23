@@ -35,7 +35,12 @@ function Nav() {
             <LogOutButton className="navLink" />
           </>
         )}
-        
+        <Link className="navLink" to="/quiz">
+          Quiz
+        </Link>
+        <Link className="navLink" to="/flashcards">
+          Flashcards
+        </Link>
         <Link className="navLink" to="/about">
           About
         </Link>

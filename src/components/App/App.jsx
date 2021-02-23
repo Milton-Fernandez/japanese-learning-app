@@ -19,6 +19,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Quiz from '../Quiz/Quiz';
+import Flashcards from '../Flashcards/Flashcards'
 
 import './App.css';
 
@@ -79,7 +81,21 @@ function App() {
           >
             <LoginPage />
           </ProtectedRoute>
+          {/* path for quiz page*/}
+          <ProtectedRoute
 
+          exact
+          path= "/quiz" 
+          >
+            <Quiz />
+          </ProtectedRoute>
+          <ProtectedRoute
+
+            exact
+            path="/flashcards"
+          >
+            <Flashcards />
+          </ProtectedRoute>
           <ProtectedRoute
             // with authRedirect:
             // - if logged in, redirects to "/user"
