@@ -11,10 +11,10 @@ function Flashcards(){
     const [flashcard, setNewFlashcard] = useState([]);
     const [num, setNewNum] = useState(0);
     const [word, setNewWord] = useState('');
+    const [cardFlip, setNewCardFlip] = useState(true)
     //function to pick a quiz by its title
     function getByTitle(title_name) {
         let title = title_name;
-        console.log(title);
         let newFlashcard = [];
         for (let i = 0; i < dataStore.length; i++) {
             if (dataStore[i].title == title) {
@@ -22,17 +22,10 @@ function Flashcards(){
             }
         }
         setNewFlashcard(newFlashcard);
-        setNewNum(flashcardPosition);
+     
+        
         return;
     }
-
-    function flashcardPosition(){
-        let num = 0
-        return num;
-        
-    }
-
-console.log(flashcard);
 
 
 
@@ -43,11 +36,13 @@ console.log(flashcard);
         <button value = "hiragana" onClick={(e) => getByTitle(e.target.value)}>Hiragana</button>
         <button value = "katakana" onClick={(e) => getByTitle(e.target.value)}>Katakana</button>
         {flashcard.length == 0 ?
-            <p></p> :
-            <p class="font_size" >{flashcard[num].japanese}</p>
+            <p> </p> : cardFlip == true ?
+            <p class="font_size" onClick={() => setNewCardFlip(false)} >{flashcard[num].japanese}</p>:
+            <p class="font_size" onClick={() => setNewCardFlip(true)}>{flashcard[num].english}</p>
+
          }
         <button onClick={() => setNewNum(num - 1)}> <p> <i class="arrow left"></i></p> </button>
-        <p>This is the number in the position:  {num}/{flashcard.length} </p>
+        <p>This is the number in the position:  {num + 1 }/{flashcard.length} </p>
         <button onClick={() => setNewNum(num+1) }> <p> <i class="arrow right"></i></p> </button>
        
         </div>
