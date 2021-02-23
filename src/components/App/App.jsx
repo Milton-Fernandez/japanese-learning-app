@@ -99,13 +99,14 @@ function App() {
           </Route>
 
 
-          <Route
+          <ProtectedRoute
 
             exact
             path="/form"
+          
           >
             <Form />
-          </Route>
+          </ProtectedRoute>
 
           
           <ProtectedRoute

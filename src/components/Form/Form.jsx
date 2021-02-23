@@ -1,8 +1,8 @@
 import './Form.css';
 import { useState } from 'react';
-
+import { useSelector, useDispatch } from 'react-redux';
 function Form(){
-    const [newTitle,setNewTitle] = usestate('');
+    const [newTitle,setNewTitle] = useState('');
     const [newJapanese,setNewJapanese] = useState('');
     const [newEnglish,setNewEnglish] = useState('');
     const[newKey,setNewKey] = useState('');
@@ -24,7 +24,9 @@ function Form(){
         setNewKey('');
     }
     return(
+       
         <>
+        <h2>Here You Can Enter New Data:</h2>
         <form onSubmit={handleSubmit}> 
             <input type = "text" value={newTitle} onChange={event => setNewTitle(event.target.value)} placeholder="title"></input>
             <input type="text" value={newJapanese} onChange={event => setNewJapanese(event.target.value)} placeholder="Japanese"></input>

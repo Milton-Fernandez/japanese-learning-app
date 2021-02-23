@@ -3,8 +3,8 @@ import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 
 function* addDataSaga(action){
 try{
-    yield axios.post('./data/add',{payload:action.payload});
-    yield put({type: 'FETCH_DATA'});
+    yield axios.post('/data/add', action.payload);
+  
 }catch(error){
     console.log('Error in add',error);
 };
