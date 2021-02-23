@@ -41,6 +41,9 @@ function Nav() {
         <Link className="navLink" to="/flashcards">
           Flashcards
         </Link>
+        <Link className="navLink" to="/form">
+          Create
+        </Link>
         <Link className="navLink" to="/about">
           About
         </Link>

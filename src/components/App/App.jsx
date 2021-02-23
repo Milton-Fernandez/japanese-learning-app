@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Quiz from '../Quiz/Quiz';
 import Flashcards from '../Flashcards/Flashcards'
+import Form from '../Form/Form';
 
 import './App.css';
 
@@ -96,6 +97,17 @@ function App() {
           >
             <Flashcards />
           </Route>
+
+
+          <Route
+
+            exact
+            path="/form"
+          >
+            <Form />
+          </Route>
+
+          
           <ProtectedRoute
             // with authRedirect:
             // - if logged in, redirects to "/user"

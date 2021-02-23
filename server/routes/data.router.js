@@ -16,4 +16,18 @@ router.get('/',(req,res) => {
     });
 });
 
+router.post('/add',(req,res) =>{
+    console.log('Adding data');
+    const newData = req.body;
+    const queryText = `INSERT INTO "data" ("title","japanese","english","key") VALUES ($1,$2,$3,$4); ` ;
+    pool.query(queryText, [newData.title,newData.japanese,newDate.english,newData.key])
+        .then(restult => {
+            res.sendStatus(201);
+        })
+        .catch(error =>{
+            console.log('Error adding new data',error);
+            res.sendStatus(500);
+        });
+});
+
 module.exports = router;
