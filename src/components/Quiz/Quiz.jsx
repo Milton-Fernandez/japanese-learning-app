@@ -9,8 +9,8 @@ function Quiz(){
     const [quiz, setNewQuiz] = useState([]);
     const [num, setNewNum] = useState(0);
 //function to pick a quiz by its title
-    function getByTitle(){
-        let title = 'hiragana';
+    function getByTitle(title_name){
+        let title = title_name;
         let newQuiz = [];
         for(let i = 0; i < dataStore.length; i++){
             if(dataStore[i].title == title){
@@ -18,14 +18,17 @@ function Quiz(){
             } 
         }
        setNewQuiz(newQuiz); 
-       setNewNum(loopQuiz(quiz));
+     
         return ;
     }
+
     //loop through quiz and display on DOM
     function loopQuiz(quiz) {
         let n = quiz.length;
         let x = Math.floor((Math.random() * n) + 0);
-        return x;
+        let newArray = quiz;
+
+
     }
 
     useEffect(()=>{
@@ -33,7 +36,10 @@ function Quiz(){
     },[]);
     return(
         <>
-        <button onClick={getByTitle}>Start Quiz</button>
+        <div class="center">
+        <h2>Select Quiz</h2>
+            <button value="hiragana" onClick={(e) => getByTitle(e.target.value)}>Hiragana</button>
+            <button value="katakana" onClick={(e) => getByTitle(e.target.value)}>Katakana</button>
         <div>
             {quiz.length == 0 ?
             <p></p>:
@@ -49,7 +55,7 @@ function Quiz(){
         <div>
             <p>Correct:</p> <p>Incorrect:</p>
         </div>
-
+        </div>
 
         </>
     )

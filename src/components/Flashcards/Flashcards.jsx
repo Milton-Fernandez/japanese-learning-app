@@ -16,23 +16,19 @@ function Flashcards(){
     function getByTitle(title_name) {
         let title = title_name;
         let newFlashcard = [];
+        setNewNum(0);
         for (let i = 0; i < dataStore.length; i++) {
             if (dataStore[i].title == title) {
                 newFlashcard.push(dataStore[i]);
             }
         }
         setNewFlashcard(newFlashcard);
-     
-        
         return;
     }
-
-
-
-
     return(
         <>
         <div class="center">
+            <h2>Select Flashcard Set</h2>
         <button value = "hiragana" onClick={(e) => getByTitle(e.target.value)}>Hiragana</button>
         <button value = "katakana" onClick={(e) => getByTitle(e.target.value)}>Katakana</button>
         {flashcard.length == 0 ?
@@ -41,9 +37,9 @@ function Flashcards(){
             <p class="font_size" onClick={() => setNewCardFlip(true)}>{flashcard[num].english}</p>
 
          }
-        <button onClick={() => setNewNum(num - 1)}> <p> <i class="arrow left"></i></p> </button>
-        <p>This is the number in the position:  {num + 1 }/{flashcard.length} </p>
-        <button onClick={() => setNewNum(num+1) }> <p> <i class="arrow right"></i></p> </button>
+        <button onClick={() => {setNewNum(num - 1)}}> <p> <i class="arrow left"></i></p> </button>
+        <p>This is the number in the position:</p>  {flashcard.length == 0 ? <p>0/0</p>:<p> {num + 1 }/{flashcard.length} </p>}
+                <button onClick={() => { setNewNum(num + 1)}}> <p> <i class="arrow right"></i></p> </button>
        
         </div>
    
