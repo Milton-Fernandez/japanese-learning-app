@@ -8,7 +8,10 @@ function Quiz(){
     const dataStore = useSelector(store => store.data);
     const [quiz, setNewQuiz] = useState([]);
     const [num, setNewNum] = useState(0);
-//function to pick a quiz by its title
+    const [answer, setAnswer] = useState('');
+    const [correct, setCorrect] = useState(0);
+    const [incorrect,setIncorrect] = useState(0);
+    //function to pick a quiz by its title
     function getByTitle(title_name){
         let title = title_name;
         let newQuiz = [];
@@ -18,16 +21,23 @@ function Quiz(){
             } 
         }
        setNewQuiz(newQuiz); 
-     
+        setCorrect(0);
+        setIncorrect(0);
         return ;
     }
 
     //loop through quiz and display on DOM
-    function loopQuiz(quiz) {
-        let n = quiz.length;
-        let x = Math.floor((Math.random() * n) + 0);
-        let newArray = quiz;
-
+    function handleSubmit(event) {
+        event.preventDefault();
+            if(quiz[num].english == answer){
+                console.log('Hey your correct');
+                setCorrect(correct+1);
+            }
+            else{
+                console.log('incorrect');
+                setIncorrect(incorrect+1);
+        }
+            setAnswer('');
 
     }
 
@@ -46,14 +56,14 @@ function Quiz(){
             <p class="font_size">{quiz[num].japanese}</p>
 
             }
-           
-            <input placeholder="Answer"></input>
-            <button onClick={loopQuiz}>Submit</button>
-
+           <form onSubmit={handleSubmit}>
+            <input type="text" value={answer} onChange={event => setAnswer(event.target.value)}placeholder="Answer"></input>
+            <button>Submit</button>
+            </form>
         </div>
 
         <div>
-            <p>Correct:</p> <p>Incorrect:</p>
+            <p>Correct:{correct}</p> <p>Incorrect:{incorrect}</p>
         </div>
         </div>
 
