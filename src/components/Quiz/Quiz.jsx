@@ -48,7 +48,7 @@ function Quiz(){
         }
             setAnswer('');
         if((quiz.length-1) == num){
-            alert('finished quiz: your score: correct:'+ correct + "/incorrect:"+incorrect);
+            alert('finished quiz: your score:  '+ correct + "/"+incorrect);
             console.log(correct);
             console.log(incorrect);
             dispatch({
