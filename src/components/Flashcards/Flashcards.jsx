@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import './Flashcards.css';
 function Flashcards(){
+    const dispatch = useDispatch();
     useEffect(() => {
         dispatch({ type: 'FETCH_DATA' });
     }, []);
-    const dispatch = useDispatch();
+   
     const dataStore = useSelector(store => store.data);
     const [flashcard, setNewFlashcard] = useState([]);
     const [num, setNewNum] = useState(0);
@@ -14,6 +15,7 @@ function Flashcards(){
     const [cardFlip, setNewCardFlip] = useState(true)
     //function to pick a quiz by its title
     function getByTitle(title_name) {
+        
         let title = title_name;
         let newFlashcard = [];
         setNewNum(0);

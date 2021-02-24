@@ -6,9 +6,9 @@ import { useEffect } from 'react';
 
 function Form(){
     useEffect(() => {
-        dispatch({ type: 'FETCH_DATA' });
+        dispatch({ type: 'FORM_DATA' });
     }, []);
-    const dataStore = useSelector(store => store.data);
+    const dataStore = useSelector(store => store.form);
     const [newTitle,setNewTitle] = useState('');
     const [newJapanese,setNewJapanese] = useState('');
     const [newEnglish,setNewEnglish] = useState('');
