@@ -29,6 +29,7 @@ function Form(){
         setNewJapanese('');
         setNewEnglish('');
         setNewKey('');
+        dispatch({ type: 'FORM_DATA' });
     }
     console.log('dataStore',dataStore);
     return(
@@ -60,7 +61,7 @@ function Form(){
                     <td>{data.japanese}</td>
                     <td>{data.english}</td>
                     <td>{data.key}</td>
-                    <td><button>Delete</button></td>
+                    <td><button onClick={() => dispatch({type:'REMOVE_DATA',payload:data.id})}>Delete</button></td>
                 </tr>
             )}
             </tbody>

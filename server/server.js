@@ -11,7 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const dataRouter = require('./routes/data.router');
 const formRouter = require('./routes/form.data.router');
-const flashcardRouter = require('./routes/flashcard.data.router')
+const flashcardRouter = require('./routes/flashcard.data.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,8 +27,9 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/data', dataRouter);
-app.use('/form', formRouter);
 app.use('/flashcard',flashcardRouter);
+app.use('/form', formRouter);
+
 
 // Serve static files
 app.use(express.static('build'));

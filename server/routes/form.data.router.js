@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     console.log('retrieving data');
-    const queryText = 'SELECT * FROM "data" ORDER BY "title";';
+    const queryText = 'SELECT * FROM "data";';
     pool.query(queryText).then(response => {
         console.log('Retrieved all data');
         res.status(200).send(response.rows);
@@ -28,6 +28,19 @@ router.post('/add', (req, res) => {
             console.log('Error adding new data', error);
             res.sendStatus(500);
         });
+});
+
+router('/delete/:id', (req,res) => {
+    const id = req.params.id;
+    console.log('Deleting data at id',id);
+    const queryText = `DELETE FROM "data" WHERE "id" = $1;`;
+    pool.query(queryText,[id]).then(()=>{
+        console.log(`Deleted at id: ${id} successfully`);
+        res.sendStatus(204);
+    }).catch(err =>{
+        console.log('ERROR in delete',err);
+        res.sendStatus(500);
+    });
 });
 
 module.exports = router;

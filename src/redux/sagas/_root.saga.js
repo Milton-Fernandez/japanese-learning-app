@@ -22,5 +22,6 @@ export default function* rootSaga() {
     dataSaga(),
     addSaga(),
     formSaga(),
+    flashcard()
   ]);
 }

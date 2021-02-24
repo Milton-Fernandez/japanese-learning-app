@@ -5,10 +5,10 @@ import './Flashcards.css';
 function Flashcards(){
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch({ type: 'FETCH_DATA' });
+        dispatch({ type: 'FLASHCARD_DATA' });
     }, []);
    
-    const dataStore = useSelector(store => store.data);
+    const dataStore = useSelector(store => store.flashcard);
     const [flashcard, setNewFlashcard] = useState([]);
     const [num, setNewNum] = useState(0);
     const [word, setNewWord] = useState('');
