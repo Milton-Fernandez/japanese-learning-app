@@ -29,9 +29,10 @@ function Nav() {
 
         {user.id && (
           <>
+          {/*
             <Link className="navLink" to="/info">
               Info Page
-            </Link>
+          </Link> */}
             <LogOutButton className="navLink" />
           </>
         )}
@@ -40,6 +41,9 @@ function Nav() {
         </Link>
         <Link className="navLink" to="/flashcards">
           Flashcards
+        </Link>
+        <Link className="navLink" to="/results">
+          Quiz Results
         </Link>
         <Link className="navLink" to="/form">
           Create

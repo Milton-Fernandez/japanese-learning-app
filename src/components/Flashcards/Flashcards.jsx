@@ -55,12 +55,18 @@ function handleDecrease(number,flashcards){
         <>
         <div class="center">
             <h2>Select Flashcard Set</h2>
+        <h3>Alphabet</h3>
         <button value = "hiragana" onClick={(e) => getByTitle(e.target.value)}>Hiragana</button>
         <button value = "katakana" onClick={(e) => getByTitle(e.target.value)}>Katakana</button>
         {flashcard.length == 0 ?
             <p> </p> : cardFlip == true ?
-            <p class="font_size" onClick={() => setNewCardFlip(false)} >{flashcard[num].japanese}</p>:
+            <div>
+            <p>Click Me:</p>
+            <p class="font_size" onClick={() => setNewCardFlip(false)} >{flashcard[num].japanese}</p> </div>:
+                        <div>
+                            <p>Click Me:</p>
             <p class="font_size" onClick={() => setNewCardFlip(true)}>{flashcard[num].english}</p>
+            </div>
 
          }
                 <button onClick={(e) => handleDecrease(num,flashcard)}> <p> <i class="arrow left"></i></p> </button>

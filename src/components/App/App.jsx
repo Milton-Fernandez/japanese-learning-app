@@ -22,6 +22,8 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import Quiz from '../Quiz/Quiz';
 import Flashcards from '../Flashcards/Flashcards'
 import Form from '../Form/Form';
+import Results from '../Results/Results';
+
 
 import './App.css';
 
@@ -97,6 +99,18 @@ function App() {
           >
             <Flashcards />
           </Route>
+
+
+          <ProtectedRoute
+
+            exact
+            path="/results"
+
+          >
+            <Results />
+          </ProtectedRoute>
+
+
 
 
           <ProtectedRoute

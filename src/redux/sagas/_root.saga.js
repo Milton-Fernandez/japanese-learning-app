@@ -7,6 +7,7 @@ import addSaga from './add.data.saga';
 import formSaga from './form.saga';
 import flashcard from './flashcard.saga';
 import remove from './delete.saga';
+import addResultSaga from './add.result.saga';
 
 
 // rootSaga is the primary saga.
@@ -26,5 +27,6 @@ export default function* rootSaga() {
     formSaga(),
     flashcard(),
     remove(),
+    addResultSaga(),
   ]);
 }

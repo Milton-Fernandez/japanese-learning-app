@@ -6,6 +6,8 @@ import './Quiz.css';
 function Quiz(){
     const dispatch = useDispatch();
     const dataStore = useSelector(store => store.data);
+    const user = useSelector((store) => store.user);
+    console.log(user);
     const [quiz, setNewQuiz] = useState([]);
     const [num, setNewNum] = useState(0);
     const [answer, setAnswer] = useState('');
@@ -46,11 +48,25 @@ function Quiz(){
         }
             setAnswer('');
         if((quiz.length-1) == num){
-            alert('finished quiz');
+            alert('finished quiz: your score: correct:'+ correct + "/incorrect:"+incorrect);
+            console.log(correct);
+            console.log(incorrect);
+            dispatch({
+                type: 'ADD_RESULT',
+                payload: {
+                    correct: correct,
+                    incorrect: incorrect,
+                    user: user.id,
+                    name: user.username    
+                }
+            });
             setNewNum(0);
             setCorrect(0);
             setIncorrect(0);
+
         }
+
+
 
     }
 
@@ -61,6 +77,7 @@ function Quiz(){
         <>
         <div class="center">
         <h2>Select Quiz</h2>
+            <h3>Alphabet</h3>
             <button value="hiragana" onClick={(e) => getByTitle(e.target.value)}>Hiragana</button>
             <button value="katakana" onClick={(e) => getByTitle(e.target.value)}>Katakana</button>
         {quiz.length == 0?<p></p>:
