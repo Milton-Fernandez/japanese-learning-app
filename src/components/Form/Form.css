@@ -1,0 +1,12 @@
+th, td { 
+    height: 50px;
+    width:200px; 
+    text-align:center; 
+    border:1px solid black; 
+    padding:5px 
+              
+    } 
+
+table{
+     margin-left: 20px;
+}
