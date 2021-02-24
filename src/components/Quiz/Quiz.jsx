@@ -15,8 +15,9 @@ function Quiz(){
     const [correct, setCorrect] = useState(0);
     const [incorrect,setIncorrect] = useState(0);
     const [titles,setTitles] = useState([]);
-
-
+    const titleName = sortArray(dataStore);
+ 
+    console.log("titleTest",titleName);
     function sortArray(quiz){
       
         let array = [];
@@ -24,7 +25,7 @@ function Quiz(){
         for( let i = 0; i < quiz.length; i++){
             array.push(quiz[i].title);
         }
-       
+       console.log(array);
          return array.filter((value,index)=> array.indexOf(value) === index);        
         
     } 
@@ -64,9 +65,10 @@ function Quiz(){
         }
             setAnswer('');
         if((quiz.length-1) == num){
-            alert('finished quiz: your score:  '+ correct + "/"+incorrect);
+
             console.log(correct);
             console.log(incorrect);
+            alert('finished quiz: your score:  ' + correct + "/" + incorrect);
             dispatch({
                 type: 'ADD_RESULT',
                 payload: {
@@ -98,7 +100,7 @@ function Quiz(){
             <h3>Alphabet</h3>
 
             
-            {titles.map((titleName) => 
+            {titleName.map((titleName) => 
                 <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}</button>
             )}
             {/*

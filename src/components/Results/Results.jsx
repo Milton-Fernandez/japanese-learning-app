@@ -7,11 +7,11 @@ function Results(){
    
     const result = useSelector(store => store.result);
     const user = useSelector((store) => store.user);
-    const [table,setTable] = useState([]);
-
+    //const [table,setTable] = useState([]);
+    const table = resultTable(result);
     useEffect(() => {
         dispatch({ type: 'FETCH_RESULT' });
-        setTable(resultTable(result));
+       
     }, []);
     console.log(result);
     console.log(user.username);

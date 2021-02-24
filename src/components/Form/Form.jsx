@@ -35,7 +35,8 @@ function Form(){
     console.log('dataStore',dataStore);
 
     const handleEdit = (event) =>{
-        event.preventDefault();
+  
+     
         console.log(event);
     }
 
@@ -73,9 +74,10 @@ function Form(){
                     <td><button onClick={() => { dispatch({ type: 'REMOVE_DATA', payload: data.id }); 
                     dispatch({ type: 'FORM_DATA' });}}>Delete</button></td>
 
-
-                    <td><button value={data} onClick={event => handleEdit(event.target.value)}>Edit</button></td>
-
+                
+                        <td><button value={data.id} onClick={event => handleEdit(event.target.value)}>Edit</button></td>
+                  
+                    
 
                 </tr>
             )}

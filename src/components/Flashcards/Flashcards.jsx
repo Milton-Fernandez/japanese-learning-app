@@ -18,6 +18,7 @@ function Flashcards(){
     const [word, setNewWord] = useState('');
     const [cardFlip, setNewCardFlip] = useState(true);
     const [titles, setTitles] = useState([]);
+    const flashcardTitle = sortArray(dataStore);
 //get the titles from the dataStore and puts in into an array
     function sortArray(flashcards) {
         let array = [];
@@ -69,7 +70,7 @@ function handleDecrease(number,flashcards){
         <div class="center">
             <h2>Select Flashcard Set</h2>
         <h3>Alphabet</h3>
-        {titles.map((titleName) =>
+        {flashcardTitle.map((titleName) =>
             <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}</button>
         )}
         {/* 
