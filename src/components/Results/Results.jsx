@@ -14,6 +14,7 @@ function Results(){
     return(
         <>
             <h2>Results For: {user.username}!</h2>
+            
             <table>
                 <thead>
                     <tr>
@@ -22,6 +23,7 @@ function Results(){
                     </tr>
                 </thead>
                 <tbody>
+                  
                     {dataStore.map((data) =>
                         <tr>
                             <td>{data.correct}</td>

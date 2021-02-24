@@ -6,6 +6,7 @@ import './Quiz.css';
 function Quiz(){
     const dispatch = useDispatch();
     const dataStore = useSelector(store => store.data);
+  
     const user = useSelector((store) => store.user);
     console.log(user);
     const [quiz, setNewQuiz] = useState([]);
@@ -13,6 +14,21 @@ function Quiz(){
     const [answer, setAnswer] = useState('');
     const [correct, setCorrect] = useState(0);
     const [incorrect,setIncorrect] = useState(0);
+    const [titles,setTitles] = useState([]);
+
+
+    function sortArray(quiz){
+      
+        let array = [];
+       
+        for( let i = 0; i < quiz.length; i++){
+            array.push(quiz[i].title);
+        }
+       
+         return array.filter((value,index)=> array.indexOf(value) === index);        
+        
+    } 
+
     //function to pick a quiz by its title
     function getByTitle(title_name){
         let title = title_name;
@@ -69,17 +85,26 @@ function Quiz(){
 
 
     }
+    console.log(titles);
 
     useEffect(()=>{
         dispatch({type:'FETCH_DATA'});
+        setTitles(sortArray(dataStore));
     },[]);
     return(
         <>
         <div class="center">
         <h2>Select Quiz</h2>
             <h3>Alphabet</h3>
+
+            
+            {titles.map((titleName) => 
+                <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}</button>
+            )}
+            {/*
             <button value="hiragana" onClick={(e) => getByTitle(e.target.value)}>Hiragana</button>
             <button value="katakana" onClick={(e) => getByTitle(e.target.value)}>Katakana</button>
+            */}
         {quiz.length == 0?<p></p>:
         <div>
         <div>

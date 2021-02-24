@@ -4,15 +4,28 @@ import { useState } from 'react';
 import './Flashcards.css';
 function Flashcards(){
     const dispatch = useDispatch();
+
+
+
     useEffect(() => {
         dispatch({ type: 'FLASHCARD_DATA' });
+        setTitles(sortArray(dataStore));
     }, []);
    
     const dataStore = useSelector(store => store.flashcard);
     const [flashcard, setNewFlashcard] = useState([]);
     const [num, setNewNum] = useState(0);
     const [word, setNewWord] = useState('');
-    const [cardFlip, setNewCardFlip] = useState(true)
+    const [cardFlip, setNewCardFlip] = useState(true);
+    const [titles, setTitles] = useState([]);
+
+    function sortArray(flashcards) {
+        let array = [];
+        for (let i = 0; i < flashcards.length; i++) {
+            array.push(flashcards[i].title);
+        }
+        return array.filter((value, index) => array.indexOf(value) === index);
+    } 
     //function to pick a quiz by its title
     function getByTitle(title_name) {
         
@@ -56,8 +69,13 @@ function handleDecrease(number,flashcards){
         <div class="center">
             <h2>Select Flashcard Set</h2>
         <h3>Alphabet</h3>
+        {titles.map((titleName) =>
+            <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}</button>
+        )}
+        {/* 
         <button value = "hiragana" onClick={(e) => getByTitle(e.target.value)}>Hiragana</button>
         <button value = "katakana" onClick={(e) => getByTitle(e.target.value)}>Katakana</button>
+        */}
         {flashcard.length == 0 ?
             <p> </p> : cardFlip == true ?
             <div>
