@@ -13,6 +13,7 @@ function Form(){
     const [newJapanese,setNewJapanese] = useState('');
     const [newEnglish,setNewEnglish] = useState('');
     const[newKey,setNewKey] = useState('');
+    const[edit, setEdit] = useState(true)
     const dispatch = useDispatch();
     const handleSubmit = (event) =>{
         event.preventDefault();
@@ -32,6 +33,13 @@ function Form(){
         dispatch({ type: 'FORM_DATA' });
     }
     console.log('dataStore',dataStore);
+
+    const handleEdit = (event) =>{
+        event.preventDefault();
+        console.log(event);
+    }
+
+
     return(
        
         <>
@@ -39,8 +47,8 @@ function Form(){
         <form onSubmit={handleSubmit}> 
             <input type = "text" value={newTitle} onChange={event => setNewTitle(event.target.value)} placeholder="title"></input>
             <input type="text" value={newJapanese} onChange={event => setNewJapanese(event.target.value)} placeholder="Japanese"></input>
-            <input ype="text" value={newEnglish} onChange={event => setNewEnglish(event.target.value)} placeholder="English"></input>
-            <input ype="text" value={newKey} onChange={event => setNewKey(event.target.value)} placeholder="Key"></input>
+            <input type="text" value={newEnglish} onChange={event => setNewEnglish(event.target.value)} placeholder="English"></input>
+            <input type="text" value={newKey} onChange={event => setNewKey(event.target.value)} placeholder="Key"></input>
             <button type="submit">Submit</button>
         </form>
      
@@ -51,7 +59,8 @@ function Form(){
             <th>Japanese</th>
             <th>English</th>
             <th>Key</th>    
-            <th></th>
+            <th>Delete</th>
+            <th>Edit</th>
             </tr>
             </thead>
             <tbody>
@@ -61,7 +70,13 @@ function Form(){
                     <td>{data.japanese}</td>
                     <td>{data.english}</td>
                     <td>{data.key}</td>
-                    <td><button onClick={() => { dispatch({ type: 'REMOVE_DATA', payload: data.id }); dispatch({ type: 'FORM_DATA' });}}>Delete</button></td>
+                    <td><button onClick={() => { dispatch({ type: 'REMOVE_DATA', payload: data.id }); 
+                    dispatch({ type: 'FORM_DATA' });}}>Delete</button></td>
+
+
+                    <td><button value={data} onClick={event => handleEdit(event.target.value)}>Edit</button></td>
+
+
                 </tr>
             )}
             </tbody>

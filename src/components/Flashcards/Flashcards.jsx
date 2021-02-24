@@ -11,14 +11,14 @@ function Flashcards(){
         dispatch({ type: 'FLASHCARD_DATA' });
         setTitles(sortArray(dataStore));
     }, []);
-   
+   //declared vairables
     const dataStore = useSelector(store => store.flashcard);
     const [flashcard, setNewFlashcard] = useState([]);
     const [num, setNewNum] = useState(0);
     const [word, setNewWord] = useState('');
     const [cardFlip, setNewCardFlip] = useState(true);
     const [titles, setTitles] = useState([]);
-
+//get the titles from the dataStore and puts in into an array
     function sortArray(flashcards) {
         let array = [];
         for (let i = 0; i < flashcards.length; i++) {
@@ -41,7 +41,7 @@ function Flashcards(){
         return;
     }
     console.log(flashcard);
-
+//handles the arrows key to traverse the array
 function handleDecrease(number,flashcards){
  
     setNewNum(num - 1);
@@ -52,7 +52,7 @@ function handleDecrease(number,flashcards){
     }
 }
 
-
+//handles the arrows key to traverse the array
     function handleIncrease(number, flashcards) {
 
         setNewNum(num + 1);

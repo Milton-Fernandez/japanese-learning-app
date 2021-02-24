@@ -5,12 +5,29 @@ import { useState } from 'react';
 function Results(){
     const dispatch = useDispatch();
    
-    const dataStore = useSelector(store => store.result);
+    const result = useSelector(store => store.result);
     const user = useSelector((store) => store.user);
+    const [table,setTable] = useState([]);
+
     useEffect(() => {
         dispatch({ type: 'FETCH_RESULT' });
+        setTable(resultTable(result));
     }, []);
-    console.log(dataStore);
+    console.log(result);
+    console.log(user.username);
+
+
+    function resultTable(array){
+        let newTable = [];
+        for(let i = 0; i < array.length; i++){
+            if(user.username == array[i].name){
+                newTable.push(array[i]);
+            }
+        }
+        console.log(newTable)
+        return newTable
+    }
+    resultTable(result);
     return(
         <>
             <h2>Results For: {user.username}!</h2>
@@ -24,7 +41,7 @@ function Results(){
                 </thead>
                 <tbody>
                   
-                    {dataStore.map((data) =>
+                    {table.map((data) =>
                         <tr>
                             <td>{data.correct}</td>
                             <td>{data.incorrect}</td>
