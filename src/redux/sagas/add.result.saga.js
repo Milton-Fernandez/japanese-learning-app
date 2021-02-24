@@ -12,6 +12,6 @@ function* addResultSaga(action) {
 
 
 function* resultSaga() {
-    yield takeEvery('ADD_DATA', addResultSaga);
+    yield takeEvery('ADD_RESULT', addResultSaga);
 }
 export default resultSaga;

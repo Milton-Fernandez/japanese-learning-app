@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const dataRouter = require('./routes/data.router');
 const formRouter = require('./routes/form.data.router');
 const flashcardRouter = require('./routes/flashcard.data.router');
+const resultRouter = require('./routes/result.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/data', dataRouter);
 app.use('/flashcard',flashcardRouter);
 app.use('/form', formRouter);
+app.use('/result', resultRouter);
 
 
 // Serve static files
