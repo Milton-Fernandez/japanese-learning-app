@@ -27,6 +27,30 @@ function Flashcards(){
         setNewFlashcard(newFlashcard);
         return;
     }
+    console.log(flashcard);
+
+function handleDecrease(number,flashcards){
+ 
+    setNewNum(num - 1);
+    console.log(number);
+    console.log(flashcards.length)
+    if(number <= 0){
+        setNewNum(flashcards.length-1);
+    }
+}
+
+
+    function handleIncrease(number, flashcards) {
+
+        setNewNum(num + 1);
+        console.log(number);
+        console.log(flashcards.length)
+        if (number > flashcards.length - 2) {
+            setNewNum(0);
+        }
+
+    }
+
     return(
         <>
         <div class="center">
@@ -39,9 +63,9 @@ function Flashcards(){
             <p class="font_size" onClick={() => setNewCardFlip(true)}>{flashcard[num].english}</p>
 
          }
-        <button onClick={() => {setNewNum(num - 1)}}> <p> <i class="arrow left"></i></p> </button>
+                <button onClick={(e) => handleDecrease(num,flashcard)}> <p> <i class="arrow left"></i></p> </button>
         <p>This is the number in the position:</p>  {flashcard.length == 0 ? <p>0/0</p>:<p> {num + 1 }/{flashcard.length} </p>}
-                <button onClick={() => { setNewNum(num + 1)}}> <p> <i class="arrow right"></i></p> </button>
+                <button onClick={(e) => handleIncrease(num, flashcard)}> <p> <i class="arrow right"></i></p> </button>
        
         </div>
    
