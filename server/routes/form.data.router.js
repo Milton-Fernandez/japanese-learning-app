@@ -30,17 +30,19 @@ router.post('/add', (req, res) => {
         });
 });
 
-router('/delete/:id', (req,res) => {
-    const id = req.params.id;
-    console.log('Deleting data at id',id);
+router.delete('/delete/:id', (req, res) => {
+    const id = req.params.id
+    console.log('Deleting data at id:', id);
     const queryText = `DELETE FROM "data" WHERE "id" = $1;`;
-    pool.query(queryText,[id]).then(()=>{
+    console.log(id);
+    pool.query(queryText, [id]).then(() => {
         console.log(`Deleted at id: ${id} successfully`);
         res.sendStatus(204);
-    }).catch(err =>{
-        console.log('ERROR in delete',err);
+    }).catch(err => {
+        console.log('Error in delete', err);
         res.sendStatus(500);
     });
 });
+
 
 module.exports = router;

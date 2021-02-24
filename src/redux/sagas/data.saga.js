@@ -6,6 +6,7 @@ function* fetchDataSaga(action){
     try{
         let response = yield axios.get('/data');
         yield put({type:'SET_DATA',payload:response.data});
+       
     }catch (error){
         console.log('ERROR in fetch', error);
     };

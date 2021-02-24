@@ -61,7 +61,7 @@ function Form(){
                     <td>{data.japanese}</td>
                     <td>{data.english}</td>
                     <td>{data.key}</td>
-                    <td><button onClick={() => dispatch({type:'REMOVE_DATA',payload:data.id})}>Delete</button></td>
+                    <td><button onClick={() => { dispatch({ type: 'REMOVE_DATA', payload: data.id }); dispatch({ type: 'FORM_DATA' });}}>Delete</button></td>
                 </tr>
             )}
             </tbody>
