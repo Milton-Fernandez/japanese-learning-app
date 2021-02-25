@@ -1,9 +1,10 @@
 th, td { 
-    height: 50px;
-    width:200px; 
+    height: 10px;
+    width:125px; 
     text-align:center; 
     border:1px solid black; 
-    padding:5px 
+    padding: 70px;
+    font-size: 20px;
               
     } 
 

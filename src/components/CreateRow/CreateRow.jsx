@@ -55,10 +55,19 @@ function CreateRow({data}){
 
                 {!edit ?
                 <td><button  onClick={event => handleEdit()}>Edit</button></td>:
-                <td><input value={titles} onChange={event => setEditTitle(event.target.value)}/>
-                        <input value={japaneses} onChange={event => setEditJapanese(event.target.value)} />
-                        <input value={englishs} onChange={event => setEditEnglish(event.target.value)} />
-                        <input value={keys} onChange={event => setEditKey(event.target.value)} />
+                <td>
+                        <label for="title">Title:</label>
+                        <input id = "title" name = "title" value={titles} onChange={event => setEditTitle(event.target.value)}/>
+
+                        <label for="Japanese">Japanese:</label>
+                        <input id="Japanese" name="Japanese" value={japaneses} onChange={event => setEditJapanese(event.target.value)} />
+
+                        <label for="English">English:</label>
+                        <input id="English" name="English" value={englishs} onChange={event => setEditEnglish(event.target.value)} />
+
+                        <label for="Key">Key:</label>
+                        <input id="Key" name="Key"value={keys} onChange={event => setEditKey(event.target.value)} />
+
                         <button onClick={handleExit}>Exit</button>
                         <button onClick={editSubmit}>Save</button></td>
                 }
