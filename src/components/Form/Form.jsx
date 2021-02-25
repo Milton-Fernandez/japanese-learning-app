@@ -2,9 +2,15 @@ import './Form.css';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import CreateRow from '../CreateRow/CreateRow';
+import React from 'react';
+
+
+
 
 
 function Form(){
+    
     useEffect(() => {
         dispatch({ type: 'FORM_DATA' });
     }, []);
@@ -52,6 +58,7 @@ function Form(){
             <input type="text" value={newKey} onChange={event => setNewKey(event.target.value)} placeholder="Key"></input>
             <button type="submit">Submit</button>
         </form>
+
      
         <table>
             <thead>
@@ -65,21 +72,15 @@ function Form(){
             </tr>
             </thead>
             <tbody>
-            {dataStore.map((data) =>
-                <tr>
-                    <td>{data.title}</td>
-                    <td>{data.japanese}</td>
-                    <td>{data.english}</td>
-                    <td>{data.key}</td>
-                    <td><button onClick={() => { dispatch({ type: 'REMOVE_DATA', payload: data.id }); 
-                    dispatch({ type: 'FORM_DATA' });}}>Delete</button></td>
+            {dataStore.map((data) =>{
+                return (
+                    <CreateRow
+                    key = {data.id}
+                    data = {data}
+                    />
+                )
+            }
 
-                
-                        <td><button value={data.id} onClick={event => handleEdit(event.target.value)}>Edit</button></td>
-                  
-                    
-
-                </tr>
             )}
             </tbody>
         </table>

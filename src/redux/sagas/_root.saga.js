@@ -9,7 +9,7 @@ import flashcard from './flashcard.saga';
 import remove from './delete.saga';
 import addResultSaga from './add.result.saga';
 import resultSaga from './result.saga';
-
+import updateSaga from './update.data.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -30,5 +30,6 @@ export default function* rootSaga() {
     remove(),
     addResultSaga(),
     resultSaga(),
+    updateSaga(),
   ]);
 }

@@ -12,22 +12,33 @@ function CreateRow({data}){
         setEdit(true);
     }
     const [editData,setEditData] = useState(data)
-    const [title, setEditTitle] = useState(data.title)
-    const [japanese, setEditJapanese] = useState(data.japanese)
-    const [english, setEditEnglish] = useState(data.english)
-    const [key, setEditKey] = useState(data.key);
+    const [titles, setEditTitle] = useState(data.title)
+    const [japaneses, setEditJapanese] = useState(data.japanese)
+    const [englishs, setEditEnglish] = useState(data.english)
+    const [keys, setEditKey] = useState(data.key);
 
-    
+
+
     const editSubmit = () =>{
         setEdit(false);
+        console.log(titles);
+        console.log(japaneses);
+        console.log(englishs);
+        console.log(keys);
+
+
         const dataObj = {
             id: data.id,
-            title: data.title,
-            japanese: data.japanese,
-            english: data.english,
-            key: data.key
+            title: titles,
+            japanese: japaneses,
+            english: englishs,
+            key: keys
         }
-        dispatch({type: 'UPDATE_DATA', payload: dataObj})
+        dispatch({type: 'UPDATE_DATA', payload: dataObj});
+     
+    }
+    const handleExit = () =>{
+        setEdit(false);
     }
 
     return (
@@ -44,10 +55,11 @@ function CreateRow({data}){
 
                 {!edit ?
                 <td><button  onClick={event => handleEdit()}>Edit</button></td>:
-                <td><input value={data.title} onChange={(e)=> setEditData(data.title)}/>
-                        <input value={data.japanese } onChange={(e) => setEditData(data.japanese)} />
-                        <input value={data.english} onChange={(e) => setEditData(data.english)} />
-                        <input value={data.key} onChange={(e) => setEditData(data.key)} />
+                <td><input value={titles} onChange={event => setEditTitle(event.target.value)}/>
+                        <input value={japaneses} onChange={event => setEditJapanese(event.target.value)} />
+                        <input value={englishs} onChange={event => setEditEnglish(event.target.value)} />
+                        <input value={keys} onChange={event => setEditKey(event.target.value)} />
+                        <button onClick={handleExit}>Exit</button>
                         <button onClick={editSubmit}>Save</button></td>
                 }
 

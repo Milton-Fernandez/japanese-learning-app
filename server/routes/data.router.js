@@ -30,5 +30,20 @@ router.post('/add',(req,res) =>{
         });
 });
 
+router.put('update/:id', (req,res) =>{
+    const query = `UPDATE "data" SET "title" = $1, "japanese" = $2, "english" = $3, "key" = $4
+    WHERE "id" = $5 ;`;
+    pool.query(query, [req.body.title, req.body.japanese, req.body.english, req.body.key, req.params.id])
+    .then(result => {
+        res.status(200).send(result.rows)
+        console.log('in server');
+
+    }).catch(err => {
+        console.log(err)
+        res.sendStatus(500)
+    })
+    
+});
+
 
 module.exports = router;
