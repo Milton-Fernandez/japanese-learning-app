@@ -35,16 +35,21 @@ function Results(){
             <table>
                 <thead>
                     <tr>
+                        <th>Quiz Name</th>
                         <th>Correct</th>
                         <th>Incorrect</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
                   
                     {table.map((data) =>
                         <tr>
+                            <td>{data.quizname}</td>
                             <td>{data.correct}</td>
                             <td>{data.incorrect}</td>
+                            <td>{data.date}</td>
+
                         </tr>
                     )}
                 </tbody>

@@ -16,6 +16,7 @@ function Quiz(){
     const [incorrect,setIncorrect] = useState(0);
     const [titles,setTitles] = useState([]);
     const titleName = sortArray(dataStore);
+    const [quizname, setQuizName] = useState('');
  
     console.log("titleTest",titleName);
     function sortArray(quiz){
@@ -32,6 +33,8 @@ function Quiz(){
 
     //function to pick a quiz by its title
     function getByTitle(title_name){
+        setQuizName(title_name);
+       
         let title = title_name;
         let newQuiz = [];
         for(let i = 0; i < dataStore.length; i++){
@@ -46,7 +49,7 @@ function Quiz(){
         dispatch({ type: 'FETCH_DATA' });
         return ;
     }
-
+    console.log("quizname", quizname);
     //loop through quiz and display on DOM
     function handleSubmit(event) {
         event.preventDefault();
@@ -75,7 +78,8 @@ function Quiz(){
                     correct: correct,
                     incorrect: incorrect,
                     user: user.id,
-                    name: user.username    
+                    name: user.username,
+                    quizname: quizname
                 }
             });
             setNewNum(0);
