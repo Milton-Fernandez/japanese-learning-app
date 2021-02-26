@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+import './Results.css';
 
 function Results(){
     const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function Results(){
     resultTable(result);
     return(
         <>
+        <div class = "move_right">
             <h2>Results For: {user.username}!</h2>
             
             <table>
@@ -54,7 +56,7 @@ function Results(){
                     )}
                 </tbody>
             </table>
-
+            </div>
         </>
     )
 }
