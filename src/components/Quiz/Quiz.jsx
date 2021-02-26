@@ -24,7 +24,7 @@ function Quiz(){
  
     console.log("titleTest",titleName);
 
-    //
+    //sorts an array by only its titles in alphabetical order.
     function sortArray(quiz){
       
         let array = [];
@@ -32,8 +32,14 @@ function Quiz(){
         for( let i = 0; i < quiz.length; i++){
             array.push(quiz[i].title);
         }
-       console.log(array);
-         return array.filter((value,index)=> array.indexOf(value) === index);        
+      //filters array into unique titles
+         let titleArray = array.filter((value,index)=> array.indexOf(value) === index);   
+       //puts array in alphabetical order
+        titleArray.sort(function (a, b) {
+            return a.length - b.length;
+        });
+        console.log("titleArray", titleArray);
+         return titleArray;     
         
     } 
 
@@ -68,6 +74,7 @@ function Quiz(){
             if(quiz[num].english == answer){
                 console.log('Hey your correct');
                 setNewNum(num+1);
+                setCorrect(correct+1);
                 correction = correction + 1;
                 console.log(correction);
                 
@@ -76,6 +83,7 @@ function Quiz(){
             else{
                 console.log('incorrect');
                 setNewNum(num + 1);
+                setIncorrect(incorrect + 1);
                 incorrection = incorrection + 1;
                 console.log(incorrection);
         }
