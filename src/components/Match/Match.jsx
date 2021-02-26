@@ -16,6 +16,7 @@ function Match(){
     const[randonArray, setRandonArray] = useState([]);
     let match = 0;
     let englishOutput = randomEnglishOutputFunction(randonArray[randomNumber]);
+    let eTarget = 0;
     function sortArray(quiz) {
 
         let array = [];
@@ -29,13 +30,14 @@ function Match(){
         titleArray.sort(function (a, b) {
             return a.length - b.length;
         });
-        console.log("titleArray", titleArray);
+    
         return titleArray;
 
     } 
 
 
     function getByTitle(title_name) {
+        console.log("title name",title_name);
         setQuizName(title_name);
 
 
@@ -52,37 +54,40 @@ function Match(){
         }
        //set new quiz
         setNewQuiz(newQuiz); 
-        console.log("quiz data",newQuiz);
-       
         match = newQuiz.length;
-        console.log("match length",match);
         //creates a random number from quiz length, pushes array indexes into new array 
         for(let i = 0; i < 3; i++){
             number = Math.floor((Math.random() * (match - 1)) + 0);
             randomNumberArray.push(number);
             randomQuizArray.push(newQuiz[number]);
         }
-        console.log("random number",randomNumberArray);
-        console.log("random array value", randomQuizArray);
         setRandonArray(randomQuizArray);
-
-        console.log("randonArray",randonArray);
-
         setRandomNumber(Math.floor((Math.random() * (3)) + 0))
-        console.log("randonNumber",randomNumber);
-     
-      
         return randomQuizArray;
 
     }
-    
+
     function randomEnglishOutputFunction(array){
         let newArray = [];
         return newArray = array;
         
     }
     
- console.log("English output 3 test",englishOutput);
+    function handleClick(param){
+    
+        console.log("id", param);
+        if(param == englishOutput.id){
+            alert('match');
+            console.log(quizname);
+            getByTitle(quizname);
+        }
+        else{
+            alert('not a match');
+            console.log(quizname);
+            getByTitle(quizname);
+        }
+
+    }
    
     useEffect(() => {
         dispatch({ type: 'FETCH_DATA' });
@@ -105,15 +110,15 @@ function Match(){
 
             <div class="row">
             {randonArray.map((tiles) =>
-                <div class="column">
+                <div class="column" >
                     <div class="card">
-            <div class = "font_size">
-            <p> {tiles.japanese} </p>
-            </div>
-            </div>
-            </div>
-                )}
+                        <div class = "font_size">
+                            <p value={tiles.id} onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>  {tiles.japanese} </p>
+                        </div>
+                    </div>
                 </div>
+                )}
+            </div>
 
             <div class="row">
                 
