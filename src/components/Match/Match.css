@@ -2,7 +2,15 @@
    
     margin: 20px;
 }
-
+.move_right{
+  margin-left: 20px;
+}
+.center{
+  margin-left: 315px;
+  margin-top: 50px;
+  width: 100%;
+  padding: 10px;
+}
 
 * {
   box-sizing: border-box;

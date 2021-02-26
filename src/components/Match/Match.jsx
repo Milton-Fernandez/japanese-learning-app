@@ -99,6 +99,7 @@ function Match(){
     
     return(
         <>
+        <div class = "move_right">
             <h2>Match Game</h2>
           
 
@@ -109,17 +110,20 @@ function Match(){
        
 
             <div class="row">
+            <h2>Pick One</h2>
             {randonArray.map((tiles) =>
-                <div class="column" >
+                <div class="column" value={tiles.id} onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
                     <div class="card">
                         <div class = "font_size">
-                            <p value={tiles.id} onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>  {tiles.japanese} </p>
+                            <p >  {tiles.japanese} </p>
                         </div>
                     </div>
                 </div>
                 )}
             </div>
+            
 
+            <div class = "center">
             <div class="row">
                 
                {randonArray.length == 0? <div> </div>:
@@ -134,7 +138,8 @@ function Match(){
                     }
             
             </div>
-
+            </div>
+            </div>
         </>
     )
 }
