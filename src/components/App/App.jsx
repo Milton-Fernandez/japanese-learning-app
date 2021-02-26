@@ -23,6 +23,7 @@ import Quiz from '../Quiz/Quiz';
 import Flashcards from '../Flashcards/Flashcards'
 import Form from '../Form/Form';
 import Results from '../Results/Results';
+import Match from '../Match/Match';
 
 
 import './App.css';
@@ -92,6 +93,7 @@ function App() {
           >
             <Quiz />
           </Route>
+
           <Route
 
             exact
@@ -100,6 +102,13 @@ function App() {
             <Flashcards />
           </Route>
 
+          <Route
+
+            exact
+            path="/match"
+          >
+            <Match />
+          </Route>
 
           <ProtectedRoute
 

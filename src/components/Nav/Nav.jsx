@@ -42,6 +42,9 @@ function Nav() {
         <Link className="navLink" to="/flashcards">
           Flashcards
         </Link>
+        <Link className="navLink" to="/match">
+          Match
+        </Link>
         <Link className="navLink" to="/results">
           Quiz Results
         </Link>

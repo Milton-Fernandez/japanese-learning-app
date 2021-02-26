@@ -80,11 +80,28 @@ function handleDecrease(number,flashcards){
         {flashcard.length == 0 ?
             <p> </p> : cardFlip == true ?
             <div>
+            <div class="row">
+            <div class="column">
+            <div class="card">
+                           
             <p>Click Me:</p>
-            <p class="font_size" onClick={() => setNewCardFlip(false)} >{flashcard[num].japanese}</p> </div>:
-                        <div>
+            <p class="font_size" onClick={() => setNewCardFlip(false)} >{flashcard[num].japanese}</p> </div>
+            </div>
+            </div>
+            </div>
+            
+            
+            :
+            <div>
+            <div class="row">
+            <div class="column">
+            <div class="card">
                             <p>Click Me:</p>
-            <p class="font_size" onClick={() => setNewCardFlip(true)}>{flashcard[num].english}</p>
+                            <p class="font_size" onClick={() => setNewCardFlip(true)}>{flashcard[num].english}</p>
+            
+            </div>
+            </div>
+            </div>              
             </div>
 
          }
