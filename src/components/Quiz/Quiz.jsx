@@ -4,11 +4,15 @@ import { useState } from 'react';
 import './Quiz.css';
 
 function Quiz(){
+    //declared dispatch
     const dispatch = useDispatch();
+    //store used for quiz
     const dataStore = useSelector(store => store.data);
   
     const user = useSelector((store) => store.user);
     console.log(user);
+
+    //declard local state and variables
     const [quiz, setNewQuiz] = useState([]);
     const [num, setNewNum] = useState(0);
     const [answer, setAnswer] = useState('');
@@ -19,6 +23,8 @@ function Quiz(){
     const [quizname, setQuizName] = useState('');
  
     console.log("titleTest",titleName);
+
+    //
     function sortArray(quiz){
       
         let array = [];
@@ -50,33 +56,43 @@ function Quiz(){
         return ;
     }
     console.log("quizname", quizname);
-    //loop through quiz and display on DOM
+
+    //handles user input. If the user has correct answer, the correct variable will increase by one.
+    // If they are incorrect, the incorrect variable will increase by one. If they reach the end of the quiz,
+    //quiz result will dispatch and the quiz will restart. 
     function handleSubmit(event) {
         event.preventDefault();
-            if(quiz.length == 0){
-                setNewQuiz({english:'english'});
-            }
+        let correction = 0;
+        let incorrection = 0;
+        //increments correct variable by 1 if answer is correct
             if(quiz[num].english == answer){
                 console.log('Hey your correct');
-                setCorrect(correct+1);
                 setNewNum(num+1);
+                correction = correction + 1;
+                console.log(correction);
+                
             }
+        //decrements incorrect variable by 1 if answer is incorrect
             else{
                 console.log('incorrect');
-                setIncorrect(incorrect+1);
                 setNewNum(num + 1);
+                incorrection = incorrection + 1;
+                console.log(incorrection);
         }
             setAnswer('');
+     
         if((quiz.length-1) == num){
-
-            console.log(correct);
-            console.log(incorrect);
-            alert('finished quiz: your score:  ' + correct + "/" + incorrect);
+            console.log("quiz length",quiz.length);
+       
+            console.log(correction);
+            console.log(incorrection);
+     
+            alert('finished quiz: your score:  ' + correction + "/" + incorrection);
             dispatch({
                 type: 'ADD_RESULT',
                 payload: {
-                    correct: correct,
-                    incorrect: incorrect,
+                    correct: correction,
+                    incorrect: incorrection,
                     user: user.id,
                     name: user.username,
                     quizname: quizname
@@ -85,6 +101,8 @@ function Quiz(){
             setNewNum(0);
             setCorrect(0);
             setIncorrect(0);
+            correction = 0;
+            incorrection = 0;
 
         }
 
