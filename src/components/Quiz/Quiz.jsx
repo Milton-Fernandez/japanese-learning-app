@@ -142,7 +142,21 @@ function Quiz(){
         <div>
             {quiz.length == 0 ?
             <p></p>:
-            <p class="font_size">{quiz[num].japanese}</p>
+
+            <div class= "margins">
+                <div class="row">
+                    <div class="column">
+                        <div class="card">
+                            <p class="font_size">{quiz[num].japanese}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
 
             }
            <form onSubmit={handleSubmit}>

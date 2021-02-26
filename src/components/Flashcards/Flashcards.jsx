@@ -79,7 +79,7 @@ function handleDecrease(number,flashcards){
         */}
         {flashcard.length == 0 ?
             <p> </p> : cardFlip == true ?
-            <div>
+            <div class= "margins">
             <div class="row">
             <div class="column">
             <div class="card">
@@ -92,7 +92,7 @@ function handleDecrease(number,flashcards){
             
             
             :
-            <div>
+            <div class = "margins">
             <div class="row">
             <div class="column">
             <div class="card">
