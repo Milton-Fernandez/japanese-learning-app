@@ -3,6 +3,7 @@ import { put, takeEvery } from "redux-saga/effects";
 
 function* updateDataSaga(action){
     try{
+        console.log(action.payload);
         yield axios.put(`/data/update/${action.payload.id}`, action.payload)
         yield put({ type: 'FETCH_DATA'});
        

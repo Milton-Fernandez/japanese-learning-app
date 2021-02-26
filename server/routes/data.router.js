@@ -20,7 +20,7 @@ router.post('/add',(req,res) =>{
     console.log('Adding data');
     const newData = req.body;
     const queryText = `INSERT INTO "data" ("title","japanese","english","key") VALUES ($1,$2,$3,$4); ` ;
-    pool.query(queryText, [newData.title,newData.japanese,newData.english,newData.key])
+    pool.query(queryText, [newData.title , newData.japanese , newData.english, newData.key])
         .then(restult => {
             res.sendStatus(201);
         })
@@ -31,7 +31,7 @@ router.post('/add',(req,res) =>{
 });
 
 router.put('/update/:id', (req,res) =>{
-    const data = req.body.payload;
+    const data = req.body;
     const query = `UPDATE "data" SET "title" = $1, "japanese" = $2, "english" = $3, "key" = $4
     WHERE "id" = $5 ;`;
     console.log(req.body);
