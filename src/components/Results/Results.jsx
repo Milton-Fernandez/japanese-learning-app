@@ -85,8 +85,8 @@ function Results(){
    
     const result = useSelector(store => store.result);
     const user = useSelector((store) => store.user);
-    //const [table,setTable] = useState([]);
-    const table = resultTable(result);
+   
+    const table = resultTable(result).reverse();
     useEffect(() => {
         dispatch({ type: 'FETCH_RESULT' });
        
