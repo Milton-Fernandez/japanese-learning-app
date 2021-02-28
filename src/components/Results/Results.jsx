@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-import './Results.css';
+//import './Results.css';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -26,7 +26,7 @@ interface Column {
 
 
 const columns: Column[] = [
-    { id: 'quizname', label: 'Name', minWidth: 100 },
+    { id: 'quizname', label: 'Quiz Name', minWidth: 100 },
     {
         id: 'correct',
         label: 'Correct',
@@ -42,13 +42,13 @@ const columns: Column[] = [
         format: (value: number) => value.toLocaleString('en-US'),
     },
     
- { id: 'date', label: 'Date', minWidth: 100 },
+ { id: 'date', label: 'Date', minWidth: 100, },
 ];
 
 
 const useStyles = makeStyles({
     root: {
-        width: '100%',
+        width: '90%',
     },
     container: {
         maxHeight: 440,

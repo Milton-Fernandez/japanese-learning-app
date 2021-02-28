@@ -3,7 +3,66 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import './Quiz.css';
 
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { FixedSizeList, ListChildComponentProps } from 'react-window';
+import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+//black border
+const defaultProps = {
+    bgcolor: 'background.paper',
+    m: 1,
+    style: { width: '5rem', height: '5rem' },
+    borderColor: 'text.primary',
+};
+//material const for title
+const useStyles = makeStyles({
+    root: {
+        width: '100%',
+        maxWidth: 500,
+    },
+});
+//materiual function style for list
+const useStyles2 = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            width: '100%',
+            height: 400,
+            maxWidth: 300,
+            backgroundColor: theme.palette.background.paper,
+        },
+    }),
+);
+//material ui function for input box
+const useStyles3 = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& .MuiTextField-root': {
+                margin: theme.spacing(1),
+                width: '25ch',
+            },
+        },
+    }),
+);
+
+function renderRow(props: ListChildComponentProps) {
+    const { index, style } = props;
+
+    return (
+        <ListItem button style={style} key={index}>
+            <ListItemText primary={`Item ${index + 1}`} />
+        </ListItem>
+    );
+}
+
 function Quiz(){
+    const classes = useStyles();
+    const classes2 = useStyles2();
+    const classes3 = useStyles3();
     //declared dispatch
     const dispatch = useDispatch();
     //store used for quiz
@@ -76,7 +135,7 @@ function Quiz(){
                 setNewNum(num+1);
                 setCorrect(correct+1);
                 correction = correction + 1;
-                console.log(correction);
+                console.log("correction", correction);
                 
             }
         //decrements incorrect variable by 1 if answer is incorrect
@@ -95,12 +154,12 @@ function Quiz(){
             console.log(correction);
             console.log(incorrection);
      
-            alert('finished quiz: your score:  ' + correction + "/" + incorrection);
+            alert('finished quiz: your score:  ' + correct + "/" + incorrect);
             dispatch({
                 type: 'ADD_RESULT',
                 payload: {
-                    correct: correction,
-                    incorrect: incorrection,
+                    correct: correct,
+                    incorrect: incorrect,
                     user: user.id,
                     name: user.username,
                     quizname: quizname
@@ -125,18 +184,24 @@ function Quiz(){
     },[]);
     return(
         <>
-        <div class="center">
-        <h2>Select Quiz</h2>
-            <h3>Alphabet</h3>
-
-            
+     
+      <aside>
+        <Typography variant="h4" gutterBottom>
+        Select Quiz
+        </Typography>
+        
+            <ul>
             {titleName.map((titleName) => 
-                <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}</button>
+               <li> <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}</button></li>
             )}
+            </ul>
+            
             {/*
             <button value="hiragana" onClick={(e) => getByTitle(e.target.value)}>Hiragana</button>
             <button value="katakana" onClick={(e) => getByTitle(e.target.value)}>Katakana</button>
             */}
+        </aside>
+        <section>
         {quiz.length == 0?<p></p>:
         <div>
         <div>
@@ -159,9 +224,27 @@ function Quiz(){
 
 
             }
+
+
            <form onSubmit={handleSubmit}>
-            <input type="text" value={answer} onChange={event => setAnswer(event.target.value)}placeholder="Answer"></input>
-            <button>Submit</button>
+                                <TextField
+                                    required
+                                    size="small"
+                                    id="outlined-required"
+                                    label="Required"
+                                    placeholder="Answer"
+                                    variant="outlined"
+                                    value={answer} 
+                                    onChange={event => setAnswer(event.target.value)}
+                                />
+                                <Button type="submit" variant="contained">Enter</Button> 
+
+            {/*
+          <input type="text" value={answer} onChange={event => setAnswer(event.target.value)}placeholder="Answer"></input>
+                
+            <button type = "submit">Submit</button>
+
+            */}
             </form>
         </div>
 
@@ -172,7 +255,7 @@ function Quiz(){
 }
 
 
-        </div>
+            </section>    
 
         </>
     )

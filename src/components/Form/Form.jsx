@@ -7,10 +7,8 @@ import React from 'react';
 
 
 
-
-
 function Form(){
-    
+
     useEffect(() => {
         dispatch({ type: 'FORM_DATA' });
     }, []);
@@ -59,7 +57,11 @@ function Form(){
             <button type="submit">Submit</button>
         </form>
 
-     
+
+
+
+
+     {/*
         <table>
             <thead>
             <tr>
@@ -84,7 +86,7 @@ function Form(){
             )}
             </tbody>
         </table>
-
+        */}
         </>
     )
 }
