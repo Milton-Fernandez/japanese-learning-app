@@ -14,6 +14,7 @@ function Match(){
     const [quizname, setQuizName] = useState('');
     const[randomNumber,setRandomNumber] = useState(0);
     const[randonArray, setRandonArray] = useState([]);
+
     let match = 0;
     let englishOutput = randomEnglishOutputFunction(randonArray[randomNumber]);
     let eTarget = 0;
@@ -112,12 +113,14 @@ function Match(){
             <div class="row">
             <h2>Pick One</h2>
             {randonArray.map((tiles) =>
+             <div>
                 <div class="column" value={tiles.id} onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
                     <div class="card">
                         <div class = "font_size">
                             <p >  {tiles.japanese} </p>
                         </div>
                     </div>
+                </div>
                 </div>
                 )}
             </div>
