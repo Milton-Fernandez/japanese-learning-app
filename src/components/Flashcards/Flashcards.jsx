@@ -2,9 +2,25 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import './Flashcards.css';
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& > *': {
+                margin: theme.spacing(1),
+            },
+        },
+    }),
+);
+
+
 function Flashcards(){
     const dispatch = useDispatch();
-
+    const classes = useStyles();
 
 
     useEffect(() => {
@@ -67,12 +83,21 @@ function handleDecrease(number,flashcards){
 
     return(
         <>
-        <div class="center">
-            <h2>Select Flashcard Set</h2>
-        <h3>Alphabet</h3>
+    
+        <aside>
+        <Typography variant="h4" align="left" gutterBottom>
+            Select Flashcard Set
+        </Typography>
+        <ul class="list-group">
+      
         {flashcardTitle.map((titleName) =>
-            <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}</button>
+            <div className={classes.root}> <li class="list-group-item"><Button value={titleName} 
+                onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}</Button></li></div>
         )}
+        </ul>
+        </aside>
+            <div class="center">
+        <side>
         {/* 
         <button value = "hiragana" onClick={(e) => getByTitle(e.target.value)}>Hiragana</button>
         <button value = "katakana" onClick={(e) => getByTitle(e.target.value)}>Katakana</button>
@@ -108,8 +133,8 @@ function handleDecrease(number,flashcards){
                 <button onClick={(e) => handleDecrease(num,flashcard)}> <p> <i class="arrow left"></i></p> </button>
         <p>This is the number in the position:</p>  {flashcard.length == 0 ? <p>0/0</p>:<p> {num + 1 }/{flashcard.length} </p>}
                 <button onClick={(e) => handleIncrease(num, flashcard)}> <p> <i class="arrow right"></i></p> </button>
-       
-        </div>
+        </side>
+            </div>
    
         </>
     )

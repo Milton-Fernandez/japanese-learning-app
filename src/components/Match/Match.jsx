@@ -2,8 +2,23 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import './Match.css';
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& > *': {
+                margin: theme.spacing(1),
+            },
+        },
+    }),
+);
 
 function Match(){
+    const classes = useStyles();
     //declared dispatch
     const dispatch = useDispatch();
     //store used for quiz
@@ -101,17 +116,28 @@ function Match(){
     return(
         <>
         <div class = "move_right">
-            <h2>Match Game</h2>
-          
+            <aside>
+            <Typography variant="h4" align="left" gutterBottom>
+                Match Game
+            </Typography>
 
-
+            <ul class="list-group">
             {titleName.map((titleName) =>
-                <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}</button>
+                <li class="list-group-item"><div className={classes.root}><Button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}</Button></div></li>
             )}
-       
+            </ul>
+            </aside>
 
-            <div class="row">
-            <h2>Pick One</h2>
+            <section>
+
+
+
+
+            <div class="row move_right">
+            <div class = "top">
+            <h2>Pick One:</h2>
+
+             </div>
             {randonArray.map((tiles) =>
              <div>
                 <div class="column" value={tiles.id} onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
@@ -142,6 +168,7 @@ function Match(){
             
             </div>
             </div>
+                </section>
             </div>
         </>
     )

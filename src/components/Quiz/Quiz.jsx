@@ -49,6 +49,17 @@ const useStyles3 = makeStyles((theme: Theme) =>
     }),
 );
 
+//material ui button 
+const useStyles4 = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& > *': {
+                margin: theme.spacing(1),
+            },
+        },
+    }),
+);
+
 function renderRow(props: ListChildComponentProps) {
     const { index, style } = props;
 
@@ -63,6 +74,7 @@ function Quiz(){
     const classes = useStyles();
     const classes2 = useStyles2();
     const classes3 = useStyles3();
+    const classes4 = useStyles4();
     //declared dispatch
     const dispatch = useDispatch();
     //store used for quiz
@@ -186,13 +198,14 @@ function Quiz(){
         <>
      
       <aside>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" align="center" gutterBottom>
         Select Quiz
         </Typography>
         
-            <ul>
+            <ul class="list-group">
             {titleName.map((titleName) => 
-               <li> <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}</button></li>
+                <li class="list-group-item"> <div className={classes4.root}><Button value={titleName} 
+                    onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}</Button></div></li>
             )}
             </ul>
             
