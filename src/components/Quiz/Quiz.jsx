@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import './Quiz.css';
-
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
@@ -14,6 +13,14 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+
+
+
+
+
 //black border
 const defaultProps = {
     bgcolor: 'background.paper',
@@ -74,6 +81,25 @@ const useStyles5 = makeStyles((theme: Theme) =>
         },
     }),
 );
+//material ui for cards
+const useStyles6 = makeStyles({
+    root: {
+        width: 100,
+        height: 200
+    },
+    bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+    },
+    title: {
+        fontSize: 14,
+    },
+    pos: {
+        marginBottom: 12,
+    },
+   
+});
 
 function renderRow(props: ListChildComponentProps) {
     const { index, style } = props;
@@ -91,6 +117,7 @@ function Quiz(){
     const classes3 = useStyles3();
     const classes4 = useStyles4();
     const classes5 = useStyles5();
+    const classes6 = useStyles6();
     //declared dispatch
     const dispatch = useDispatch();
     //store used for quiz
@@ -198,11 +225,7 @@ function Quiz(){
             setIncorrect(0);
             correction = 0;
             incorrection = 0;
-
         }
-
-
-
     }
     console.log(titles);
 
@@ -210,6 +233,7 @@ function Quiz(){
         dispatch({type:'FETCH_DATA'});
         setTitles(sortArray(dataStore));
     },[]);
+
     return(
         <>
      
@@ -241,15 +265,15 @@ function Quiz(){
                                 {quiz.length == 0 ?
                                     <p></p>:
 
-                                        <div class= "margins">
-                                            <div class="row">
-                                                <div class="column">
-                                                    <div class="card">
-                                                        <p class="font_size">{quiz[num].japanese}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <Card className={classes.root}>
+                                             <CardContent>
+                                                <Typography variant="h3" gutterBottom>
+                                                  
+                                                       {quiz[num].japanese}
+                                                
+                                                    </Typography>
+                                            </CardContent>
+                                        </Card>
                         }
 
 
