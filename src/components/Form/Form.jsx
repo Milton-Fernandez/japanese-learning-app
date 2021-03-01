@@ -86,7 +86,7 @@ function Form(){
                     placeholder="Title"
                     variant="outlined"
                     value={newTitle}
-                    onChange={event => newTitle(event.target.value)}
+                    onChange={event => setNewTitle(event.target.value)}
                 />
                 <TextField
                     required
@@ -125,7 +125,7 @@ function Form(){
 
 
 
-     {/*
+     
         <table>
             <thead>
             <tr>
@@ -150,7 +150,7 @@ function Form(){
             )}
             </tbody>
         </table>
-        */}
+        
         </>
     )
 }
