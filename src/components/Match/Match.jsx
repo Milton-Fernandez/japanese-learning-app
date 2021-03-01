@@ -123,7 +123,7 @@ function Match(){
 
             <ul class="list-group">
             {titleName.map((titleName) =>
-                <li class="list-group-item"><div className={classes.root}><Button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}</Button></div></li>
+                <li class="list-group-item"><div><button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}</button></div></li>
             )}
             </ul>
             </aside>
