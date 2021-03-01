@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -16,9 +18,23 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }),
 );
+//material ui for grids
+const useStyles2 = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            flexGrow: 1,
+        },
+        paper: {
+            padding: theme.spacing(2),
+            textAlign: 'center',
+            color: theme.palette.text.secondary,
+        },
+    }),
+);
 
 function Match(){
     const classes = useStyles();
+    const classes2 = useStyles2();
     //declared dispatch
     const dispatch = useDispatch();
     //store used for quiz
@@ -115,60 +131,68 @@ function Match(){
     
     return(
         <>
-        <div class = "move_right">
-            <aside>
-            <Typography variant="h4" align="left" gutterBottom>
-                Match Game
-            </Typography>
+            <div className={classes2.root}>
+                <Grid container spacing={4} justify="center" alignItems="center">
+                    <Grid item xs={2}>
+            
+                        <Typography variant="h4" align="left" gutterBottom>
+                            Match Game
+                        </Typography>
 
-            <ul class="list-group">
-            {titleName.map((titleName) =>
-                <li class="list-group-item"><div><button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}</button></div></li>
-            )}
-            </ul>
-            </aside>
+                        <ul class="list-group">
+                            {titleName.map((titleName) =>
+                                <li class="list-group-item">
+                                    <div>
+                                        <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}
+                                        </button>
+                                    </div>
+                                </li>
+                            )}
+                        </ul>
+       
 
-            <section>
+                    </Grid>
 
+                    <Grid item xs={10}>
+                        <div class="row move_right">
+                            <div class = "top">
+                                <h2>Pick One:</h2>
 
-
-
-            <div class="row move_right">
-            <div class = "top">
-            <h2>Pick One:</h2>
-
-             </div>
-            {randonArray.map((tiles) =>
-             <div>
-                <div class="column" value={tiles.id} onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
-                    <div class="card">
-                        <div class = "font_size">
-                            <p >  {tiles.japanese} </p>
+                            </div>
+                            {randonArray.map((tiles) =>
+                                <div>
+                                    <div class="column" 
+                                        value={tiles.id} 
+                                        onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
+                                        <div class="card">
+                                            <div class = "font_size">
+                                                <p >  {tiles.japanese} </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    </div>
-                </div>
-                </div>
-                )}
-            </div>
             
 
-            <div class = "center">
-            <div class="row">
+                    <div class = "center">
+                        <div class="row">
                 
-               {randonArray.length == 0? <div> </div>:
+                        {randonArray.length == 0? <div> </div>:
 
-                    <div class="column">
-                        <div class="card">
-                            <div class="font_size">
-                                <p>{englishOutput.english}</p>
+                            <div class="column">
+                                <div class="card">
+                                    <div class="font_size">
+                                        <p>{englishOutput.english}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+            
                             </div>
                         </div>
-                    </div>
-                    }
-            
-            </div>
-            </div>
-                </section>
+                    </Grid>
+                </Grid>
             </div>
         </>
     )

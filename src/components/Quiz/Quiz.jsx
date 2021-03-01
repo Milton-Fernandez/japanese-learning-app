@@ -12,6 +12,8 @@ import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 //black border
 const defaultProps = {
     bgcolor: 'background.paper',
@@ -59,6 +61,19 @@ const useStyles4 = makeStyles((theme: Theme) =>
         },
     }),
 );
+//material ui for grids
+const useStyles5 = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            flexGrow: 1,
+        },
+        paper: {
+            padding: theme.spacing(2),
+            textAlign: 'center',
+            color: theme.palette.text.secondary,
+        },
+    }),
+);
 
 function renderRow(props: ListChildComponentProps) {
     const { index, style } = props;
@@ -75,6 +90,7 @@ function Quiz(){
     const classes2 = useStyles2();
     const classes3 = useStyles3();
     const classes4 = useStyles4();
+    const classes5 = useStyles5();
     //declared dispatch
     const dispatch = useDispatch();
     //store used for quiz
@@ -197,79 +213,72 @@ function Quiz(){
     return(
         <>
      
-      <aside>
-        <Typography variant="h4" align="center" gutterBottom>
-        Select Quiz
-        </Typography>
+        <div className={classes5.root}>
+            <Grid container spacing={4} justify="center" alignItems="center">
+                <Grid item xs={2}>
+                    <Typography variant="h4" align="center" gutterBottom>
+                        Select Quiz
+                    </Typography>
         
-            <ul class="list-group">
-            {titleName.map((titleName) => 
-                <li class="list-group-item"> <div className={classes4.root}><Button value={titleName} 
-                    onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}</Button></div></li>
-            )}
-            </ul>
+                    <ul class="list-group">
+                        {titleName.map((titleName) => 
+                            <li class="list-group-item"> 
+                                <div className={classes4.root}>
+                                    <Button value={titleName} 
+                                        onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}
+                                    </Button>
+                                </div>
+                            </li>
+                        )}
+                    </ul>
             
-            {/*
-            <button value="hiragana" onClick={(e) => getByTitle(e.target.value)}>Hiragana</button>
-            <button value="katakana" onClick={(e) => getByTitle(e.target.value)}>Katakana</button>
-            */}
-        </aside>
-        <section>
-        {quiz.length == 0?<p></p>:
-        <div>
-        <div>
-            {quiz.length == 0 ?
-            <p></p>:
+      
+                </Grid>
+                <Grid item xs={10} align="center">
+                    {quiz.length == 0?<p></p>:
+                        <div>
+                            <div>
+                                {quiz.length == 0 ?
+                                    <p></p>:
 
-            <div class= "margins">
-                <div class="row">
-                    <div class="column">
-                        <div class="card">
-                            <p class="font_size">{quiz[num].japanese}</p>
-                        </div>
-                    </div>
+                                        <div class= "margins">
+                                            <div class="row">
+                                                <div class="column">
+                                                    <div class="card">
+                                                        <p class="font_size">{quiz[num].japanese}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                        }
+
+
+                    <form onSubmit={handleSubmit}>
+                        <TextField
+                            required
+                            size="small"
+                            id="outlined-required"
+                            label="Required"
+                            placeholder="Answer"
+                            variant="outlined"
+                            value={answer} 
+                            onChange={event => setAnswer(event.target.value)}
+                        />
+                        <Button type="submit" variant="contained">Enter</Button> 
+
+ 
+                    </form>
                 </div>
-            </div>
 
-
-
-
-
-
-            }
-
-
-           <form onSubmit={handleSubmit}>
-                                <TextField
-                                    required
-                                    size="small"
-                                    id="outlined-required"
-                                    label="Required"
-                                    placeholder="Answer"
-                                    variant="outlined"
-                                    value={answer} 
-                                    onChange={event => setAnswer(event.target.value)}
-                                />
-                                <Button type="submit" variant="contained">Enter</Button> 
-
-            {/*
-          <input type="text" value={answer} onChange={event => setAnswer(event.target.value)}placeholder="Answer"></input>
-                
-            <button type = "submit">Submit</button>
-
-            */}
-            </form>
-        </div>
-
-        <div>
+            <div>
             <p>Correct:{correct}</p> <p>Incorrect:{incorrect}</p>
         </div>
         </div>
-}
+            }
 
-
-            </section>    
-
+        </Grid>
+        </Grid>           
+        </div>
         </>
     )
 }

@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -17,10 +19,25 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+//material ui for grids
+const useStyles2 = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            flexGrow: 1,
+        },
+        paper: {
+            padding: theme.spacing(2),
+            textAlign: 'center',
+            color: theme.palette.text.secondary,
+        },
+    }),
+);
+
 
 function Flashcards(){
     const dispatch = useDispatch();
     const classes = useStyles();
+    const classes2 = useStyles2();
 
 
     useEffect(() => {
@@ -83,59 +100,70 @@ function handleDecrease(number,flashcards){
 
     return(
         <>
-    
-        <aside>
-        <Typography variant="h4" align="left" gutterBottom>
-            Select Flashcard Set
-        </Typography>
-        <ul class="list-group">
+        <div className={classes2.root}>
+            <Grid container spacing={4} justify="center" alignItems="center">
+                <Grid item xs={2}>
+                    <Typography variant="h4" align="left" gutterBottom>
+                        Select Flashcard Set
+                    </Typography>
+                <ul class="list-group">
       
-        {flashcardTitle.map((titleName) =>
-            <div className={classes.root}> <li class="list-group-item"><Button value={titleName} 
-                onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}</Button></li></div>
+                {flashcardTitle.map((titleName) =>
+                    <div className={classes.root}> 
+                        <li class="list-group-item">
+                            <Button value={titleName} 
+                                    onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}
+                            </Button>
+                        </li>
+                    </div>
         )}
-        </ul>
-        </aside>
-            <div class="center">
-        <side>
+                </ul>
+            </Grid>
+                <Grid item xs={10} align="center">
+     
+  
         {/* 
         <button value = "hiragana" onClick={(e) => getByTitle(e.target.value)}>Hiragana</button>
         <button value = "katakana" onClick={(e) => getByTitle(e.target.value)}>Katakana</button>
         */}
-        {flashcard.length == 0 ?
-            <p> </p> : cardFlip == true ?
-            <div class= "margins">
-            <div class="row">
-            <div class="column">
-            <div class="card">
+                    {flashcard.length == 0 ?
+                        <p> </p> : 
+                        cardFlip == true ?
+                            <div class= "margins">
+                                <div class="row">
+                                    <div class="column">
+                                        <div class="card">
                            
-            <p>Click Me:</p>
-            <p class="font_size" onClick={() => setNewCardFlip(false)} >{flashcard[num].japanese}</p> </div>
-            </div>
-            </div>
-            </div>
+                                            <p>Click Me:</p>
+                                                <p class="font_size" onClick={() => setNewCardFlip(false)} >
+                                                {flashcard[num].japanese}</p> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
             
             
-            :
-            <div class = "margins">
-            <div class="row">
-            <div class="column">
-            <div class="card">
-                            <p>Click Me:</p>
-                            <p class="font_size" onClick={() => setNewCardFlip(true)}>{flashcard[num].english}</p>
+                        :
+                            <div class = "margins">
+                                <div class="row">
+                                    <div class="column">
+                                        <div class="card">
+                                            <p>Click Me:</p>
+                                                <p class="font_size" onClick={() => setNewCardFlip(true)}>
+                                                    {flashcard[num].english}</p>
             
-            </div>
-            </div>
-            </div>              
-            </div>
+                                        </div>
+                                    </div>
+                                </div>              
+                            </div>
 
-         }
-                <button onClick={(e) => handleDecrease(num,flashcard)}> <p> <i class="arrow left"></i></p> </button>
-        <p>This is the number in the position:</p>  {flashcard.length == 0 ? <p>0/0</p>:<p> {num + 1 }/{flashcard.length} </p>}
-                <button onClick={(e) => handleIncrease(num, flashcard)}> <p> <i class="arrow right"></i></p> </button>
-        </side>
-            </div>
-   
+                    }
+                    <button onClick={(e) => handleDecrease(num,flashcard)}> <p> <i class="arrow left"></i></p> </button>
+                    <p>This is the number in the position:</p>  {flashcard.length == 0 ? <p>0/0</p>:<p> {num + 1 }/{flashcard.length} </p>}
+                    <button onClick={(e) => handleIncrease(num, flashcard)}> <p> <i class="arrow right"></i></p> </button>
+                </Grid>
+            </Grid>
+        </div>
         </>
     )
 }
