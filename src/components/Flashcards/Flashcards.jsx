@@ -5,9 +5,19 @@ import './Flashcards.css';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { FixedSizeList, ListChildComponentProps } from 'react-window';
+import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -33,11 +43,32 @@ const useStyles2 = makeStyles((theme: Theme) =>
     }),
 );
 
+//material ui for cards
+const useStyles3 = makeStyles({
+    root: {
+        width: 275,
+        height: 200
+    },
+    bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+    },
+    title: {
+        fontSize: 14,
+    },
+    pos: {
+        marginBottom: 12,
+    },
+
+});
+
 
 function Flashcards(){
     const dispatch = useDispatch();
     const classes = useStyles();
     const classes2 = useStyles2();
+    const classes3 = useStyles3();
 
 
     useEffect(() => {
@@ -129,33 +160,31 @@ function handleDecrease(number,flashcards){
                     {flashcard.length == 0 ?
                         <p> </p> : 
                         cardFlip == true ?
-                            <div class= "margins">
-                                <div class="row">
-                                    <div class="column">
-                                        <div class="card">
+                         
+                                    <Card boxShadow={3} className={classes3.root}>
+                                        <CardContent>
                            
                                             <p>Click Me:</p>
                                                 <p class="font_size" onClick={() => setNewCardFlip(false)} >
                                                 {flashcard[num].japanese}</p> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                        </CardContent>
+                                    </Card>
+                       
+                      
             
             
                         :
-                            <div class = "margins">
-                                <div class="row">
-                                    <div class="column">
-                                        <div class="card">
+                         
+                                    <Card boxShadow={3} className={classes3.root}>
+                                        <CardContent>
                                             <p>Click Me:</p>
                                                 <p class="font_size" onClick={() => setNewCardFlip(true)}>
                                                     {flashcard[num].english}</p>
+                                        </CardContent>
+                                    </Card>
             
-                                        </div>
-                                    </div>
-                                </div>              
-                            </div>
+                                  
+                        
 
                     }
                     <button onClick={(e) => handleDecrease(num,flashcard)}> <p> <i class="arrow left"></i></p> </button>

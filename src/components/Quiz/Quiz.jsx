@@ -5,6 +5,7 @@ import './Quiz.css';
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
@@ -84,8 +85,8 @@ const useStyles5 = makeStyles((theme: Theme) =>
 //material ui for cards
 const useStyles6 = makeStyles({
     root: {
-        width: 100,
-        height: 200
+        width: 275,
+        height: 175
     },
     bullet: {
         display: 'inline-block',
@@ -93,13 +94,26 @@ const useStyles6 = makeStyles({
         transform: 'scale(0.8)',
     },
     title: {
-        fontSize: 14,
+        fontSize: 28,
     },
     pos: {
         marginBottom: 12,
     },
    
 });
+
+//material ui for list
+const useStyles7 = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            width: '100%',
+            height: 400,
+            maxWidth: 300,
+            backgroundColor: theme.palette.background.paper,
+        },
+    }),
+);
+
 
 function renderRow(props: ListChildComponentProps) {
     const { index, style } = props;
@@ -118,6 +132,7 @@ function Quiz(){
     const classes4 = useStyles4();
     const classes5 = useStyles5();
     const classes6 = useStyles6();
+    const classes7 = useStyles7();
     //declared dispatch
     const dispatch = useDispatch();
     //store used for quiz
@@ -243,19 +258,19 @@ function Quiz(){
                     <Typography variant="h4" align="center" gutterBottom>
                         Select Quiz
                     </Typography>
-        
-                    <ul class="list-group">
+                    <div className={classes7.root}>
+                    <List>
                         {titleName.map((titleName) => 
-                            <li class="list-group-item"> 
+                            <ListItem >
                                 <div className={classes4.root}>
                                     <Button value={titleName} 
                                         onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}
                                     </Button>
                                 </div>
-                            </li>
+                            </ListItem>
                         )}
-                    </ul>
-            
+                    </List>
+                    </div>
       
                 </Grid>
                 <Grid item xs={10} align="center">
@@ -265,7 +280,7 @@ function Quiz(){
                                 {quiz.length == 0 ?
                                     <p></p>:
 
-                                        <Card boxShadow={3} className={classes.root}>
+                                        <Card boxShadow={3} className={classes6.root}>
                                              <CardContent>
                                                 <Typography variant="h3" gutterBottom>
                                                   
