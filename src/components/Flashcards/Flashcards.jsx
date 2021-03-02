@@ -193,7 +193,7 @@ function handleDecrease(number,flashcards){
                                     <TableHead>
                                         <TableRow>
                                             <TableCell>
-                                                Quizzes
+                                                Flashcard Sets
                                                 </TableCell>
                                         </TableRow>
                                     </TableHead>

@@ -11,6 +11,14 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -55,11 +63,21 @@ const useStyles3 = makeStyles({
     },
 
 });
+//material ui for table
+const useStyles4 = makeStyles({
+    root: {
+        width: '90%',
+    },
+    container: {
+        maxHeight: 440,
+    },
+});
 
 function Match(){
     const classes = useStyles();
     const classes2 = useStyles2();
     const classes3 = useStyles3();
+    const classes4 = useStyles4();
     //declared dispatch
     const dispatch = useDispatch();
     //store used for quiz
@@ -153,7 +171,20 @@ function Match(){
     console.log("ransonArray",randonArray);
 
 
-    
+
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
+    };
+
+
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
     return(
         <>
             <div className={classes2.root}>
@@ -164,16 +195,40 @@ function Match(){
                             Match Game
                         </Typography>
 
-                        <ul class="list-group">
+                        <Paper className={classes4.root}>
+                            <TableContainer className={classes4.container}>
+                                <Table stickyHeader aria-label="sticky table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>
+                                                Flashcard Sets
+                                                </TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
                             {titleName.map((titleName) =>
-                                <li class="list-group-item">
+                              <TableRow>
+                                  <TableCell>
                                     <div>
                                         <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}
                                         </button>
                                     </div>
-                                </li>
+                                    </TableCell>
+                                </TableRow>
                             )}
-                        </ul>
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                            <TablePagination
+                                rowsPerPageOptions={([10, 25, 100])}
+                                component="div"
+                                count={titleName.length}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                onChangePage={handleChangePage}
+                                onChangeRowsPerPage={handleChangeRowsPerPage}>
+                            </TablePagination>
+                        </Paper>
        
 
                     </Grid>
