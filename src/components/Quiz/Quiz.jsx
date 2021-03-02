@@ -265,7 +265,7 @@ function Quiz(){
                                 {quiz.length == 0 ?
                                     <p></p>:
 
-                                        <Card className={classes.root}>
+                                        <Card boxShadow={3} className={classes.root}>
                                              <CardContent>
                                                 <Typography variant="h3" gutterBottom>
                                                   
