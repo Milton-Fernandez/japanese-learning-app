@@ -17,6 +17,10 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import IconButton from '@material-ui/core/IconButton';
+
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -62,6 +66,18 @@ const useStyles3 = makeStyles({
     },
 
 });
+//material ui for arrow button
+const useStyles4 = makeStyles((theme: Theme) =>
+    createStyles({
+        margin: {
+            margin: theme.spacing(1),
+        },
+        extendedIcon: {
+            marginRight: theme.spacing(1),
+        },
+    }),
+);
+
 
 
 function Flashcards(){
@@ -69,6 +85,7 @@ function Flashcards(){
     const classes = useStyles();
     const classes2 = useStyles2();
     const classes3 = useStyles3();
+    const classes4 = useStyles4();
 
 
     useEffect(() => {
@@ -183,13 +200,23 @@ function handleDecrease(number,flashcards){
                                         </CardContent>
                                     </Card>
             
-                                  
-                        
-
                     }
-                    <button onClick={(e) => handleDecrease(num,flashcard)}> <p> <i class="arrow left"></i></p> </button>
-                    <p>This is the number in the position:</p>  {flashcard.length == 0 ? <p>0/0</p>:<p> {num + 1 }/{flashcard.length} </p>}
-                    <button onClick={(e) => handleIncrease(num, flashcard)}> <p> <i class="arrow right"></i></p> </button>
+
+                             {flashcard.length == 0 ? <p></p>: 
+                             <div>
+                                <div>
+                                        <IconButton aria-label="delete" className={classes4.margin} size="medium">
+                                            <ArrowBackIosIcon onClick={(e) => handleDecrease(num, flashcard)} fontSize="inherit" />
+                                        </IconButton>
+                                </div>                               
+                                        <p> {num + 1 }/{flashcard.length} </p>
+                                <div>
+                                        <IconButton aria-label="delete" className={classes4.margin} size="medium">
+                                            <ArrowForwardIosIcon onClick={(e) => handleIncrease(num, flashcard)} fontSize="inherit" />
+                                        </IconButton>
+                                </div>
+                            </div>
+                        }
                 </Grid>
             </Grid>
         </div>
