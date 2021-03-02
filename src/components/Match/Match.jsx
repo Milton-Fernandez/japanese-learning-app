@@ -192,7 +192,12 @@ function Match(){
                     <Grid item xs={3}>
             
                         <Typography variant="h4" align="left" gutterBottom>
-                            Match Game
+                            Match Game:
+                        </Typography>
+                        <Typography variant="h6" align="left" gutterBottom>
+                            Select one of the Following then pick the Japanese 
+                            card that
+                            matches the Engish card equivalent.
                         </Typography>
 
                         <Paper className={classes4.root}>
@@ -201,7 +206,7 @@ function Match(){
                                     <TableHead>
                                         <TableRow>
                                             <TableCell>
-                                                Flashcard Sets
+                                                 Selection
                                                 </TableCell>
                                         </TableRow>
                                     </TableHead>
