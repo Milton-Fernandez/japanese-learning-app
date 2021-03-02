@@ -282,7 +282,7 @@ function Quiz(){
 
                                         <Card className={classes6.root}>
                                              <CardContent>
-                                                <Typography variant="h3" gutterBottom>
+                                                <Typography variant="h1" gutterBottom>
                                                   
                                                        {quiz[num].japanese}
                                                 

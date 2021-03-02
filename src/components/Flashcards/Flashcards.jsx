@@ -180,23 +180,25 @@ function handleDecrease(number,flashcards){
                          
                                     <Card boxShadow={3} className={classes3.root}>
                                         <CardContent>
-                           
-                                            <p>Click Me:</p>
-                                                <p class="font_size" onClick={() => setNewCardFlip(false)} >
-                                                {flashcard[num].japanese}</p> 
+                                            <Typography>
+                                                Click Me:
+                                            </Typography>
+                                            <Typography variant = "h1" onClick={() => setNewCardFlip(false)}>
+                                                {flashcard[num].japanese}
+                                            </Typography>
+                                           
+                                         
                                         </CardContent>
                                     </Card>
-                       
-                      
-            
-            
-                        :
-                         
+                                    :           
                                     <Card boxShadow={3} className={classes3.root}>
                                         <CardContent>
-                                            <p>Click Me:</p>
-                                                <p class="font_size" onClick={() => setNewCardFlip(true)}>
-                                                    {flashcard[num].english}</p>
+                                            <Typography>
+                                                Click Me:
+                                            </Typography>
+                                            <Typography variant="h1" onClick={() => setNewCardFlip(true)}>
+                                                {flashcard[num].english}
+                                            </Typography>
                                         </CardContent>
                                     </Card>
             

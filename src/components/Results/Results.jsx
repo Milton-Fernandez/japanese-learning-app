@@ -109,7 +109,7 @@ function Results(){
     return(
         <>
         <div class = "move_right">
-            <h2>Results For: {user.username}!</h2>
+            <h2> Quiz Results For: {user.username}!</h2>
 
             <Paper className={classes.root}>
                  <TableContainer className={classes.container}>

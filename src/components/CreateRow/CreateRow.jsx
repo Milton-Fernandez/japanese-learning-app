@@ -8,9 +8,25 @@ import TableRow from '@material-ui/core/TableRow';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
 
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        margin: {
+            margin: theme.spacing(1),
+        },
+        extendedIcon: {
+            marginRight: theme.spacing(1),
+        },
+    }),
+);
 
 function CreateRow({data}){
+    const classes = useStyles();
+
     const [edit, setEdit] = useState(false);
     const dispatch = useDispatch();
  
@@ -54,13 +70,27 @@ function CreateRow({data}){
                 <TableCell>{data.japanese}</TableCell>
                 <TableCell>{data.english}</TableCell>
                 <TableCell>{data.key}</TableCell>
-                <TableCell><button onClick={() => {
-                    dispatch({ type: 'REMOVE_DATA', payload: data.id });
-                    dispatch({ type: 'FORM_DATA' });
-                }}>Delete</button></TableCell>
+                <TableCell>
+                    <div>
+                        <IconButton aria-label="delete" className={classes.margin}>
+                            <DeleteIcon onClick={() => {
+                                dispatch({ type: 'REMOVE_DATA', payload: data.id });
+                                dispatch({ type: 'FORM_DATA' });
+                            }}/>
+                        </IconButton>
+                    </div>
+                </TableCell>
 
                 {!edit ?
-                <TableCell><button  onClick={event => handleEdit()}>Edit</button></TableCell>:
+                <TableCell>
+                    <IconButton aria-label="edit" className={classes.margin}>
+
+                            <EditIcon onClick={event => handleEdit()}></EditIcon>
+                    </IconButton>
+
+              
+                        
+                </TableCell>:
                 <TableCell>
                         <label for="title">Title:</label>
                         <input id = "title" name = "title" value={titles} onChange={event => setEditTitle(event.target.value)}/>
