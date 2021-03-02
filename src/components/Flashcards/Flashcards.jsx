@@ -20,6 +20,13 @@ import CardContent from '@material-ui/core/CardContent';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import IconButton from '@material-ui/core/IconButton';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
 
 
 
@@ -78,7 +85,15 @@ const useStyles4 = makeStyles((theme: Theme) =>
     }),
 );
 
-
+//material ui for table
+const useStyles5 = makeStyles({
+    root: {
+        width: '90%',
+    },
+    container: {
+        maxHeight: 440,
+    },
+});
 
 function Flashcards(){
     const dispatch = useDispatch();
@@ -86,6 +101,21 @@ function Flashcards(){
     const classes2 = useStyles2();
     const classes3 = useStyles3();
     const classes4 = useStyles4();
+    const classes5 = useStyles5();
+
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
+    };
+
+
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
 
 
     useEffect(() => {
@@ -154,18 +184,51 @@ function handleDecrease(number,flashcards){
                     <Typography variant="h4" align="left" gutterBottom>
                         Select Flashcard Set
                     </Typography>
-                <ul class="list-group">
+            
+
+
+                        <Paper className={classes5.root}>
+                            <TableContainer className={classes5.container}>
+                                <Table stickyHeader aria-label="sticky table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>
+                                                Quizzes
+                                                </TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
       
-                {flashcardTitle.map((titleName) =>
-                    <div className={classes.root}> 
-                        <li class="list-group-item">
-                            <Button value={titleName} 
-                                    onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}
-                            </Button>
-                        </li>
-                    </div>
-        )}
-                </ul>
+                                        {flashcardTitle.map((titleName) =>
+                                            <TableRow>
+                                                <TableCell>
+                                            <div className={classes.root}> 
+                      
+                                                <Button value={titleName} 
+                                                     onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}
+                                                </Button>
+                  
+                                            </div>
+                                                </TableCell>
+                                            </TableRow>
+                                                       
+                                        )}
+                
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                            <TablePagination
+                                rowsPerPageOptions={([10, 25, 100])}
+                                component="div"
+                                count={flashcardTitle.length}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                onChangePage={handleChangePage}
+                                onChangeRowsPerPage={handleChangeRowsPerPage}>
+                            </TablePagination>
+                        </Paper>
+
+
             </Grid>
                 <Grid item xs={10} align="center">
      
