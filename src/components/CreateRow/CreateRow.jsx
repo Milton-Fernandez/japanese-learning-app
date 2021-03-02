@@ -13,6 +13,10 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import TextField from '@material-ui/core/TextField';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
+import Button from '@material-ui/core/Button';
+
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -37,10 +41,20 @@ const useStyles2 = makeStyles((theme: Theme) =>
         },
     }),
 );
+//material ui button with icon
+const useStyles3 = makeStyles((theme: Theme) =>
+    createStyles({
+        button: {
+            margin: theme.spacing(1),
+        },
+    }),
+);
+
 
 function CreateRow({data}){
     const classes = useStyles();
     const classes2 = useStyles2();
+    const classes3 = useStyles3();
 
     const [edit, setEdit] = useState(false);
     const dispatch = useDispatch();
@@ -150,8 +164,27 @@ function CreateRow({data}){
                         />
   
 
-                        <button onClick={handleExit}>Exit</button>
-                        <button onClick={editSubmit}>Save</button></TableCell>
+                        <Button
+                            variant="contained"
+                           
+                        
+                            className={classes.button}
+                            onClick={handleExit}
+                            startIcon={<ExitToAppIcon/>}
+                        >
+                            Exit
+                        </Button>
+                        <Button
+                            variant="contained"
+                            className={classes.button}
+                            onClick={editSubmit}
+                            startIcon={<SaveAltIcon />}
+                        >
+                            Save
+                        </Button>
+                        
+                        
+                        </TableCell>
                 }
             </TableRow>
             

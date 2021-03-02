@@ -188,7 +188,7 @@ function Match(){
     return(
         <>
             <div className={classes2.root}>
-                <Grid container spacing={8} justify="center" alignItems="center">
+                <Grid container spacing={6} justify="center" alignItems="center">
                     <Grid item xs={3}>
             
                         <Typography variant="h4" align="left" gutterBottom>
@@ -237,45 +237,104 @@ function Match(){
        
 
                     </Grid>
+                    <Grid item xs={3}>
 
-                    <Grid item xs={9}>
+                        <div class="row move_right">
+                            <div class="top">
+
+
+                            </div>
+
+                            
+                                <div>
+                                {randonArray.length == 0 ? <div> </div> :
+                                    <Card className={classes3.root}>
+                                        <CardContent 
+                                            onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
+                                            <Typography variant="h3" gutterBottom>
+
+                                                {randonArray[0].japanese}
+
+                                            </Typography>
+
+
+                                        </CardContent>
+                                    </Card>
+                                    }
+                                </div>
+                                </div>
+                    </Grid>
+                    <Grid item xs={3}>
+
+                        <div class="row move_right">
+                            <div class="top">
+
+
+                            </div>
+
+
+                            <div>
+                                {randonArray.length == 0 ? <div> </div> :
+                                    <Card className={classes3.root}>
+                                        <CardContent
+                                            onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
+                                            <Typography variant="h3" gutterBottom>
+
+                                                {randonArray[1].japanese}
+
+                                            </Typography>
+
+
+                                        </CardContent>
+                                    </Card>
+                                }
+                            </div>
+                        </div>
+                    </Grid>
+                    <Grid item xs={3}>
+
+                        <div class="row move_right">
+                            <div class="top">
+
+
+                            </div>
+
+
+                            <div>
+                                {randonArray.length == 0 ? <div> </div> :
+                                    <Card className={classes3.root}>
+                                        <CardContent
+                                            onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
+                                            <Typography variant="h3" gutterBottom>
+
+                                                {randonArray[2].japanese}
+
+                                            </Typography>
+
+
+                                        </CardContent>
+                                    </Card>
+                                }
+                            </div>
+                        </div>
+                    </Grid>
+                    <Grid item xs={4}>
                         <div class="row move_right">
                             <div class = "top">
                               
 
                             </div>
-                    
-                            {randonArray.map((tiles) =>
-                                <div>                    
-                                    <Card  className={classes3.root}>
-                                        <CardContent value={tiles.id} 
-                                        onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
-                                            <Typography variant="h3" gutterBottom>
 
-                                                {tiles.japanese} 
-
-                                            </Typography>
-                                            
-                                  
-                                        </CardContent>
-                                    </Card>                                        
-                                 
-                                </div>
-                            )}
                         </div>
-            
-                    <Grid item xs={6}>
+                    
 
-
-                    </Grid>
-
-                    <Grid item xs={6}>
+                   
                     <div class = "center">
                         <div class="row">
                 
                         {randonArray.length == 0? <div> </div>:
 
-                                        <Card boxShadow={3} className={classes3.root}>
+                                        <Card className={classes3.root}>
                                             <CardContent >
                                                 <Typography variant="h3" gutterBottom>
 
@@ -289,7 +348,7 @@ function Match(){
             
                             </div>
                         </div>
-                    </Grid>
+              
                     </Grid>
                 </Grid>
             </div>
