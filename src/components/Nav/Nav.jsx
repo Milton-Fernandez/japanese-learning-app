@@ -47,16 +47,20 @@ console.log(user);
           
             <Link className="navLink" to="/results">
               Quiz Results
+             
         </Link>
+            {/*
             {user.admin == false ? <Link></Link> :
+
               <Link className="navLink" to="/form">
                 Create
         </Link>
             }
+             */}
             <LogOutButton className="navLink" />
           </>
         )}
-
+           
         
         <Link className="navLink" to="/about">
           About
