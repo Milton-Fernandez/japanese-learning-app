@@ -49,14 +49,14 @@ console.log(user);
               Quiz Results
              
         </Link>
-            {/*
+            
             {user.admin == false ? <Link></Link> :
 
               <Link className="navLink" to="/form">
                 Create
         </Link>
             }
-             */}
+            
             <LogOutButton className="navLink" />
           </>
         )}

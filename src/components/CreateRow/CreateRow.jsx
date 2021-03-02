@@ -12,6 +12,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
+import TextField from '@material-ui/core/TextField';
+
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -24,8 +26,21 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+//material ui text field
+const useStyles2 = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& .MuiTextField-root': {
+                margin: theme.spacing(1),
+                width: '25ch',
+            },
+        },
+    }),
+);
+
 function CreateRow({data}){
     const classes = useStyles();
+    const classes2 = useStyles2();
 
     const [edit, setEdit] = useState(false);
     const dispatch = useDispatch();
@@ -92,17 +107,48 @@ function CreateRow({data}){
                         
                 </TableCell>:
                 <TableCell>
-                        <label for="title">Title:</label>
-                        <input id = "title" name = "title" value={titles} onChange={event => setEditTitle(event.target.value)}/>
-
-                        <label for="Japanese">Japanese:</label>
-                        <input id="Japanese" name="Japanese" value={japaneses} onChange={event => setEditJapanese(event.target.value)} />
-
-                        <label for="English">English:</label>
-                        <input id="English" name="English" value={englishs} onChange={event => setEditEnglish(event.target.value)} />
-
-                        <label for="Key">Key:</label>
-                        <input id="Key" name="Key"value={keys} onChange={event => setEditKey(event.target.value)} />
+                        <TextField
+                            required
+                            size="small"
+                            id="outlined-required"
+                            label="Title"
+                            placeholder="Title"
+                            variant="outlined"
+                            value={titles}
+                            onChange={event => setEditTitle(event.target.value)}
+                        />
+              
+                        <TextField
+                            required
+                            size="small"
+                            id="outlined-required"
+                            label="Japanese"
+                            placeholder="Japanese"
+                            variant="outlined"
+                            value={japaneses}
+                            onChange={event => setEditJapanese(event.target.value)}
+                        />
+                        <TextField
+                            required
+                            size="small"
+                            id="outlined-required"
+                            label="English"
+                            placeholder="English"
+                            variant="outlined"
+                            value={englishs}
+                            onChange={event => setEditEnglish(event.target.value)}
+                        />
+                        <TextField
+                            required
+                            size="small"
+                            id="outlined-basic"
+                            label="Key"
+                            placeholder="Key"
+                            variant="outlined"
+                            value={keys}
+                            onChange={event => setEditKey(event.target.value)}
+                        />
+  
 
                         <button onClick={handleExit}>Exit</button>
                         <button onClick={editSubmit}>Save</button></TableCell>
