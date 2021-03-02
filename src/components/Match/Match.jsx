@@ -157,7 +157,7 @@ function Match(){
     return(
         <>
             <div className={classes2.root}>
-                <Grid container spacing={4} justify="center" alignItems="center">
+                <Grid container spacing={8} justify="center" alignItems="center">
                     <Grid item xs={3}>
             
                         <Typography variant="h4" align="left" gutterBottom>
@@ -181,12 +181,13 @@ function Match(){
                     <Grid item xs={9}>
                         <div class="row move_right">
                             <div class = "top">
-                                <h2>Pick One:</h2>
+                              
 
                             </div>
+                    
                             {randonArray.map((tiles) =>
                                 <div>                    
-                                    <Card boxShadow={3} className={classes3.root}>
+                                    <Card  className={classes3.root}>
                                         <CardContent value={tiles.id} 
                                         onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
                                             <Typography variant="h3" gutterBottom>

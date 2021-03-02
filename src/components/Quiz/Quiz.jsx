@@ -280,7 +280,7 @@ function Quiz(){
                                 {quiz.length == 0 ?
                                     <p></p>:
 
-                                        <Card boxShadow={3} className={classes6.root}>
+                                        <Card className={classes6.root}>
                                              <CardContent>
                                                 <Typography variant="h3" gutterBottom>
                                                   
