@@ -204,17 +204,17 @@ function handleDecrease(number,flashcards){
 
                              {flashcard.length == 0 ? <p></p>: 
                              <div>
-                                <div>
-                                        <IconButton aria-label="delete" className={classes4.margin} size="medium">
+                            
+                                        <IconButton aria-label="delete" className={classes4.margin} size="medium" >
                                             <ArrowBackIosIcon onClick={(e) => handleDecrease(num, flashcard)} fontSize="inherit" />
                                         </IconButton>
-                                </div>                               
+                                                             
                                         <p> {num + 1 }/{flashcard.length} </p>
-                                <div>
+                            
                                         <IconButton aria-label="delete" className={classes4.margin} size="medium">
                                             <ArrowForwardIosIcon onClick={(e) => handleIncrease(num, flashcard)} fontSize="inherit" />
                                         </IconButton>
-                                </div>
+                                
                             </div>
                         }
                 </Grid>

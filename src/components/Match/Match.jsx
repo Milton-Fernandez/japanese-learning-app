@@ -8,6 +8,10 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -32,9 +36,30 @@ const useStyles2 = makeStyles((theme: Theme) =>
     }),
 );
 
+//material ui for cards
+const useStyles3 = makeStyles({
+    root: {
+        width: 275,
+        height: 175
+    },
+    bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+    },
+    title: {
+        fontSize: 28,
+    },
+    pos: {
+        marginBottom: 12,
+    },
+
+});
+
 function Match(){
     const classes = useStyles();
     const classes2 = useStyles2();
+    const classes3 = useStyles3();
     //declared dispatch
     const dispatch = useDispatch();
     //store used for quiz
@@ -133,7 +158,7 @@ function Match(){
         <>
             <div className={classes2.root}>
                 <Grid container spacing={4} justify="center" alignItems="center">
-                    <Grid item xs={2}>
+                    <Grid item xs={3}>
             
                         <Typography variant="h4" align="left" gutterBottom>
                             Match Game
@@ -153,44 +178,57 @@ function Match(){
 
                     </Grid>
 
-                    <Grid item xs={10}>
+                    <Grid item xs={9}>
                         <div class="row move_right">
                             <div class = "top">
                                 <h2>Pick One:</h2>
 
                             </div>
                             {randonArray.map((tiles) =>
-                                <div>
-                                    <div class="column" 
-                                        value={tiles.id} 
+                                <div>                    
+                                    <Card boxShadow={3} className={classes3.root}>
+                                        <CardContent value={tiles.id} 
                                         onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
-                                        <div class="card">
-                                            <div class = "font_size">
-                                                <p >  {tiles.japanese} </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            <Typography variant="h3" gutterBottom>
+
+                                                {tiles.japanese} 
+
+                                            </Typography>
+                                            
+                                  
+                                        </CardContent>
+                                    </Card>                                        
+                                 
                                 </div>
                             )}
                         </div>
             
+                    <Grid item xs={6}>
 
+
+                    </Grid>
+
+                    <Grid item xs={6}>
                     <div class = "center">
                         <div class="row">
                 
                         {randonArray.length == 0? <div> </div>:
 
-                            <div class="column">
-                                <div class="card">
-                                    <div class="font_size">
-                                        <p>{englishOutput.english}</p>
-                                    </div>
-                                </div>
-                            </div>
+                                        <Card boxShadow={3} className={classes3.root}>
+                                            <CardContent >
+                                                <Typography variant="h3" gutterBottom>
+
+                                                    {englishOutput.english}
+
+                                                </Typography>
+                                         
+                                        </CardContent>
+                                        </Card>
                         }
             
                             </div>
                         </div>
+                    </Grid>
                     </Grid>
                 </Grid>
             </div>
