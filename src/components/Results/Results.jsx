@@ -26,7 +26,7 @@ interface Column {
 
 
 const columns: Column[] = [
-    { id: 'quizname', label: 'Quiz Name', minWidth: 100 },
+    { id: 'quizname', label: 'QuizName', minWidth: 100 },
     {
         id: 'correct',
         label: 'Correct',

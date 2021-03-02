@@ -1,4 +1,10 @@
-
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -43,19 +49,19 @@ function CreateRow({data}){
 
     return (
         <>
-            <tr>
-                <td>{data.title}</td>
-                <td>{data.japanese}</td>
-                <td>{data.english}</td>
-                <td>{data.key}</td>
-                <td><button onClick={() => {
+            <TableRow>
+                <TableCell>{data.title}</TableCell>
+                <TableCell>{data.japanese}</TableCell>
+                <TableCell>{data.english}</TableCell>
+                <TableCell>{data.key}</TableCell>
+                <TableCell><button onClick={() => {
                     dispatch({ type: 'REMOVE_DATA', payload: data.id });
                     dispatch({ type: 'FORM_DATA' });
-                }}>Delete</button></td>
+                }}>Delete</button></TableCell>
 
                 {!edit ?
-                <td><button  onClick={event => handleEdit()}>Edit</button></td>:
-                <td>
+                <TableCell><button  onClick={event => handleEdit()}>Edit</button></TableCell>:
+                <TableCell>
                         <label for="title">Title:</label>
                         <input id = "title" name = "title" value={titles} onChange={event => setEditTitle(event.target.value)}/>
 
@@ -69,10 +75,10 @@ function CreateRow({data}){
                         <input id="Key" name="Key"value={keys} onChange={event => setEditKey(event.target.value)} />
 
                         <button onClick={handleExit}>Exit</button>
-                        <button onClick={editSubmit}>Save</button></td>
+                        <button onClick={editSubmit}>Save</button></TableCell>
                 }
-
-            </tr>
+            </TableRow>
+            
         </>
     )
 }
