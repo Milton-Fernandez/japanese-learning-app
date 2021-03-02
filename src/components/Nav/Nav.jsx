@@ -27,23 +27,7 @@ console.log(user);
           {loginLinkData.text}
         </Link>
 
-        {user.id && (
-          <>
-          {/*
-            <Link className="navLink" to="/info">
-              Info Page
-          </Link> */}
-            <LogOutButton className="navLink" />
-            <Link className="navLink" to="/results">
-              Quiz Results
-        </Link>
-        { user.admin == false ? <Link></Link>:
-            <Link className="navLink" to="/form">
-              Create
-        </Link>
-          }
-          </>
-        )}
+
         <Link className="navLink" to="/quiz">
           Quiz
         </Link>
@@ -54,7 +38,24 @@ console.log(user);
           Match
         </Link>
 
-        
+        {user.id && (
+          <>
+            {/*
+            <Link className="navLink" to="/info">
+              Info Page
+          </Link> */}
+          
+            <Link className="navLink" to="/results">
+              Quiz Results
+        </Link>
+            {user.admin == false ? <Link></Link> :
+              <Link className="navLink" to="/form">
+                Create
+        </Link>
+            }
+            <LogOutButton className="navLink" />
+          </>
+        )}
 
         
         <Link className="navLink" to="/about">
