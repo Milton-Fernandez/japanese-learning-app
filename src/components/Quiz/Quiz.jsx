@@ -17,6 +17,13 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
 
 
 
@@ -114,6 +121,16 @@ const useStyles7 = makeStyles((theme: Theme) =>
     }),
 );
 
+//material ui for table
+const useStyles8 = makeStyles({
+    root: {
+        width: '90%',
+    },
+    container: {
+        maxHeight: 440,
+    },
+});
+
 
 function renderRow(props: ListChildComponentProps) {
     const { index, style } = props;
@@ -133,6 +150,7 @@ function Quiz(){
     const classes5 = useStyles5();
     const classes6 = useStyles6();
     const classes7 = useStyles7();
+    const classes8 = useStyles8();
     //declared dispatch
     const dispatch = useDispatch();
     //store used for quiz
@@ -191,6 +209,19 @@ function Quiz(){
         return ;
     }
     console.log("quizname", quizname);
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
+    };
+
+
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
 
     //handles user input. If the user has correct answer, the correct variable will increase by one.
     // If they are incorrect, the incorrect variable will increase by one. If they reach the end of the quiz,
@@ -258,19 +289,47 @@ function Quiz(){
                     <Typography variant="h4" align="center" gutterBottom>
                         Select Quiz
                     </Typography>
-                    <div className={classes7.root}>
-                    <List>
-                        {titleName.map((titleName) => 
-                            <ListItem >
-                                <div className={classes4.root}>
-                                    <Button value={titleName} 
-                                        onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}
-                                    </Button>
-                                </div>
-                            </ListItem>
-                        )}
-                    </List>
-                    </div>
+
+
+
+               
+                            <Paper className={classes8.root}>
+                                <TableContainer className={classes8.container}>
+                                    <Table stickyHeader aria-label="sticky table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>
+                                                    Quizzes
+                                                </TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {titleName.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((titleName) =>
+                                                <TableRow>
+                                                    <TableCell>
+                                                <div className={classes4.root}>
+                                                    <Button value={titleName}
+                                                        onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}
+                                                    </Button>
+                                                </div>
+                                                    </TableCell>
+                                                </TableRow>
+                                            )}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                                <TablePagination
+                                    rowsPerPageOptions={([10, 25, 100])}
+                                    component="div"
+                                    count={titleName.length}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    onChangePage={handleChangePage}
+                                    onChangeRowsPerPage={handleChangeRowsPerPage}>
+                                </TablePagination>
+                            </Paper>
+
+                
       
                 </Grid>
                 <Grid item xs={10} align="center">
