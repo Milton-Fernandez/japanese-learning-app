@@ -205,18 +205,18 @@ function Match(){
                                                 </TableCell>
                                         </TableRow>
                                     </TableHead>
-                                    <TableBody>
-                            {titleName.map((titleName) =>
-                              <TableRow>
-                                  <TableCell>
-                                    <div>
-                                        <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}
-                                        </button>
-                                    </div>
-                                    </TableCell>
-                                </TableRow>
-                            )}
-                                    </TableBody>
+                                        <TableBody>
+                                            {titleName.map((titleName) =>
+                                            <TableRow>
+                                                <TableCell>
+                                                    <div>
+                                                    <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}
+                                                    </button>
+                                                    </div>
+                                                </TableCell>
+                                            </TableRow>
+                                            )}
+                                        </TableBody>
                                 </Table>
                             </TableContainer>
                             <TablePagination

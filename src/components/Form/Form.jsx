@@ -108,7 +108,7 @@ function Form(){
             justify="center"
         >
         <Grid item xs={12}>
-        <h2>Here You Can Enter New Data:</h2>
+        <h2>Enter New Data:</h2>
         <form onSubmit={handleSubmit}> 
 
 
