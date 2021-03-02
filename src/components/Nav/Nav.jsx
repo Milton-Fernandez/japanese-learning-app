@@ -16,7 +16,7 @@ function Nav() {
     loginLinkData.path = '/user';
     loginLinkData.text = 'Home';
   }
-
+console.log(user);
   return (
     <div className="nav">
       <Link to="/home">
@@ -34,6 +34,14 @@ function Nav() {
               Info Page
           </Link> */}
             <LogOutButton className="navLink" />
+            <Link className="navLink" to="/results">
+              Quiz Results
+        </Link>
+        { user.admin == false ? <Link></Link>:
+            <Link className="navLink" to="/form">
+              Create
+        </Link>
+          }
           </>
         )}
         <Link className="navLink" to="/quiz">
@@ -45,13 +53,9 @@ function Nav() {
         <Link className="navLink" to="/match">
           Match
         </Link>
-        <Link className="navLink" to="/results">
-          Quiz Results
-        </Link>
+
         
-        <Link className="navLink" to="/form">
-          Create
-        </Link>
+
         
         <Link className="navLink" to="/about">
           About
