@@ -195,8 +195,8 @@ function Match(){
                             Match Game:
                         </Typography>
                         <Typography variant="h6" align="left" gutterBottom>
-                            Select one of the Following then pick the Japanese 
-                            card that
+                            Select one of the sets below, then pick from the following three
+                            Japanese cards that appear on screen that
                             matches the Engish card equivalent.
                         </Typography>
 
