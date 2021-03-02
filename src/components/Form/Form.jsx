@@ -8,7 +8,7 @@ import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -17,6 +17,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import Grid from '@material-ui/core/Grid';
+
 const useStyles = makeStyles({
     root: {
         width: '90%',
@@ -26,7 +28,22 @@ const useStyles = makeStyles({
     },
 });
 
+const useStyles2 = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            flexGrow: 1,
+        },
+        paper: {
+            padding: theme.spacing(2),
+            textAlign: 'center',
+            color: theme.palette.text.secondary,
+        },
+    }),
+);
+
 function Form(){
+    const classes = useStyles();
+    const classes2 = useStyles2();
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -41,7 +58,7 @@ function Form(){
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
-    const classes = useStyles();
+  
     useEffect(() => {
         dispatch({ type: 'FORM_DATA' });
     }, []);
@@ -84,30 +101,17 @@ function Form(){
 
 
         <>
-
-        {/*
-                                <TextField
-                                    required
-                                    size="small"
-                                    id="outlined-required"
-                                    label="Required"
-                                    placeholder="Answer"
-                                    variant="outlined"
-                                    value={answer} 
-                                    onChange={event => setAnswer(event.target.value)}
-                                />
-       <Button type="submit" variant="contained">Enter</Button> */}
+        <div>
+        <Grid 
+            container spacing={4}
+            direction="column"
+            justify="center"
+        >
+        <Grid item xs={12}>
         <h2>Here You Can Enter New Data:</h2>
         <form onSubmit={handleSubmit}> 
 
-        {/*
-            <input type = "text" value={newTitle} onChange={event => setNewTitle(event.target.value)} placeholder="title"></input>
-            <input type="text" value={newJapanese} onChange={event => setNewJapanese(event.target.value)} placeholder="Japanese"></input>
-            <input type="text" value={newEnglish} onChange={event => setNewEnglish(event.target.value)} placeholder="English"></input>
-            <input type="text" value={newKey} onChange={event => setNewKey(event.target.value)} placeholder="Key"></input>
-            <button type="submit">Submit</button>
-            
-        */}
+
                 <TextField
                     required
                     size="small"
@@ -150,7 +154,8 @@ function Form(){
                 />
                 <Button type="submit" variant="contained">Enter</Button>
             </form>
-
+            </Grid>
+            <Grid item xs={12}>
             <Paper className={classes.root}>
                 <TableContainer className={classes.container}>
                     <Table stickyHeader aria-label="sticky table">
@@ -192,35 +197,9 @@ function Form(){
                     onChangeRowsPerPage={handleChangeRowsPerPage}>
                 </TablePagination>
             </Paper>
-
-
-
-     {/*
-        <table>
-            <thead>
-            <tr>
-            <th>Title</th>
-            <th>Japanese</th>
-            <th>English</th>
-            <th>Key</th>    
-            <th>Delete</th>
-            <th>Edit</th>
-            </tr>
-            </thead>
-            <tbody>
-            {dataStore.map((data) =>{
-                return (
-                    <CreateRow
-                    key = {data.id}
-                    data = {data}
-                    />
-                )
-            }
-
-            )}
-            </tbody>
-        </table>
-        */}
+            </Grid>
+            </Grid>
+            </div>
         </>
     )
 }
