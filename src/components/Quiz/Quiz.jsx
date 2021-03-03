@@ -24,6 +24,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import swal from 'sweetalert';
 
 
 
@@ -255,7 +256,10 @@ function Quiz(){
             console.log(correction);
             console.log(incorrection);
      
-            alert('finished quiz: your score:  ' + correct + "/" + incorrect);
+            swal({title:'Finished Quiz: ',
+            text: "Score:  " + correct + "/" + incorrect,
+            icon: "success"
+            });
             dispatch({
                 type: 'ADD_RESULT',
                 payload: {
