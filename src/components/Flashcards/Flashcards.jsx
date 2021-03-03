@@ -66,7 +66,7 @@ const useStyles3 = makeStyles({
         transform: 'scale(0.8)',
     },
     title: {
-        fontSize: 14,
+        fontSize: 28,
     },
     pos: {
         marginBottom: 12,
@@ -181,7 +181,7 @@ function handleDecrease(number,flashcards){
         <div className={classes2.root}>
             <Grid container spacing={4} justify="center" alignItems="center">
                 <Grid item xs={2}>
-                    <Typography variant="h4" align="left" gutterBottom>
+                    <Typography variant="h4" align="center" gutterBottom>
                         Select Flashcard Set
                     </Typography>
             

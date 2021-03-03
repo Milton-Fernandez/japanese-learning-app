@@ -47,8 +47,8 @@ const useStyles2 = makeStyles((theme: Theme) =>
 //material ui for cards
 const useStyles3 = makeStyles({
     root: {
-        width: 275,
-        height: 175
+        width: 200,
+        height: 125
     },
     bullet: {
         display: 'inline-block',
@@ -188,13 +188,13 @@ function Match(){
     return(
         <>
             <div className={classes2.root}>
-                <Grid container spacing={6} justify="center" alignItems="center">
-                    <Grid item xs={3}>
+                <Grid container spacing={1} justify="center" alignItems="center">
+                    <Grid item xs={4}>
             
-                        <Typography variant="h4" align="left" gutterBottom>
+                        <Typography variant="h4" align="center" gutterBottom>
                             Match Game:
                         </Typography>
-                        <Typography variant="h6" align="left" gutterBottom>
+                        <Typography variant="h6" align="center" gutterBottom>
                             Select one of the sets below, then pick from the following three
                             Japanese cards that appear on screen that
                             matches the Engish card equivalent.
@@ -237,21 +237,15 @@ function Match(){
        
 
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={2}>
 
-                        <div class="row move_right">
-                            <div class="top">
-
-
-                            </div>
-
-                            
-                                <div>
+                      
                                 {randonArray.length == 0 ? <div> </div> :
                                     <Card className={classes3.root}>
                                         <CardContent 
+                                    value={randonArray[0].id}
                                             onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
-                                            <Typography variant="h3" gutterBottom>
+                                    <Typography align="center"variant="h2" >
 
                                                 {randonArray[0].japanese}
 
@@ -261,24 +255,16 @@ function Match(){
                                         </CardContent>
                                     </Card>
                                     }
-                                </div>
-                                </div>
+                               
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={2}>
 
-                        <div class="row move_right">
-                            <div class="top">
-
-
-                            </div>
-
-
-                            <div>
                                 {randonArray.length == 0 ? <div> </div> :
                                     <Card className={classes3.root}>
                                         <CardContent
+                                    value={randonArray[1].id}
                                             onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
-                                            <Typography variant="h3" gutterBottom>
+                                    <Typography align="center"variant="h2" gutterBottom>
 
                                                 {randonArray[1].japanese}
 
@@ -288,24 +274,17 @@ function Match(){
                                         </CardContent>
                                     </Card>
                                 }
-                            </div>
-                        </div>
+                        
                     </Grid>
                     <Grid item xs={3}>
 
-                        <div class="row move_right">
-                            <div class="top">
-
-
-                            </div>
-
-
-                            <div>
+               
                                 {randonArray.length == 0 ? <div> </div> :
                                     <Card className={classes3.root}>
                                         <CardContent
+                                                value={randonArray[2].id}
                                             onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
-                                            <Typography variant="h3" gutterBottom>
+                                    <Typography align="center" variant="h2" gutterBottom>
 
                                                 {randonArray[2].japanese}
 
@@ -315,28 +294,16 @@ function Match(){
                                         </CardContent>
                                     </Card>
                                 }
-                            </div>
-                        </div>
+                         
                     </Grid>
-                    <Grid item xs={4}>
-                        <div class="row move_right">
-                            <div class = "top">
-                              
-
-                            </div>
-
-                        </div>
                     
-
-                   
-                    <div class = "center">
-                        <div class="row">
-                
+                    <Grid item xs={4}>
+                                <div class = "margin">
                         {randonArray.length == 0? <div> </div>:
 
                                         <Card className={classes3.root}>
                                             <CardContent >
-                                                <Typography variant="h3" gutterBottom>
+                                            <Typography align="center"variant="h2" gutterBottom>
 
                                                     {englishOutput.english}
 
@@ -345,9 +312,8 @@ function Match(){
                                         </CardContent>
                                         </Card>
                         }
-            
-                            </div>
-                        </div>
+            </div>
+                        
               
                     </Grid>
                 </Grid>
