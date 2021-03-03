@@ -21,6 +21,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 
 
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -88,7 +89,10 @@ function Match(){
     const [quizname, setQuizName] = useState('');
     const[randomNumber,setRandomNumber] = useState(0);
     const[randonArray, setRandonArray] = useState([]);
-
+    const [color, setNewColor] = useState('white');
+    const [color2, setNewColor2] = useState('white');
+    const [color3, setNewColor3] = useState('white');
+    let tagColor = '';
     let match = 0;
     let englishOutput = randomEnglishOutputFunction(randonArray[randomNumber]);
     let eTarget = 0;
@@ -114,13 +118,16 @@ function Match(){
     function getByTitle(title_name) {
         console.log("title name",title_name);
         setQuizName(title_name);
-
-
+        setNewColor('white');
+        setNewColor2('white');
+        setNewColor3('white');
+        //setNewColor('white');
         let title = title_name;
         let newQuiz = [];
         let randomNumberArray = [];
         let randomQuizArray = [];
         let number = 0;
+       
         //push all of the title names into newQuiz array
         for (let i = 0; i < dataStore.length; i++) {
             if (dataStore[i].title == title) {
@@ -129,15 +136,23 @@ function Match(){
         }
        //set new quiz
         setNewQuiz(newQuiz); 
+
         match = newQuiz.length;
         //creates a random number from quiz length, pushes array indexes into new array 
         for(let i = 0; i < 3; i++){
             number = Math.floor((Math.random() * (match - 1)) + 0);
+            
             randomNumberArray.push(number);
+
+            console.log('random number array',randomNumberArray);
+
             randomQuizArray.push(newQuiz[number]);
+
+            console.log('random quiz array',randomQuizArray);
+
         }
         setRandonArray(randomQuizArray);
-        setRandomNumber(Math.floor((Math.random() * (3)) + 0))
+       // setRandomNumber(Math.floor((Math.random() * (3)) + 0))
         return randomQuizArray;
 
     }
@@ -149,17 +164,62 @@ function Match(){
     }
     
     function handleClick(param){
-    
+
         console.log("id", param);
         if(param == englishOutput.id){
-            alert('match');
+            //alert('match');
             console.log(quizname);
-            getByTitle(quizname);
+            setNewColor('lightgreen');
+            //getByTitle(quizname);
+            setTimeout(function(){getByTitle(quizname)},1000);
         }
         else{
-            alert('not a match');
+            //alert('not a match');
             console.log(quizname);
-            getByTitle(quizname);
+            setNewColor('red');
+            setTimeout(function () { getByTitle(quizname) }, 1000);
+            //getByTitle(quizname);
+            
+        }
+
+    }
+    function handleClick2(param) {
+
+        console.log("id", param);
+        if (param == englishOutput.id) {
+            //alert('match');
+            console.log(quizname);
+            setNewColor2('lightgreen');
+            //getByTitle(quizname);
+            setTimeout(function () { getByTitle(quizname) }, 1000);
+        }
+        else {
+            //alert('not a match');
+            console.log(quizname);
+            setNewColor2('red');
+            setTimeout(function () { getByTitle(quizname) }, 1000);
+            //getByTitle(quizname);
+
+        }
+
+    }
+    function handleClick3(param) {
+
+        console.log("id", param);
+        if (param == englishOutput.id) {
+            //alert('match');
+            console.log(quizname);
+            setNewColor3('lightgreen');
+            //getByTitle(quizname);
+            setTimeout(function () { getByTitle(quizname) }, 1000);
+        }
+        else {
+            //alert('not a match');
+            console.log(quizname);
+            setNewColor3('red');
+            setTimeout(function () { getByTitle(quizname) }, 1000);
+            //getByTitle(quizname);
+
         }
 
     }
@@ -214,10 +274,14 @@ function Match(){
                                             {titleName.map((titleName) =>
                                             <TableRow>
                                                 <TableCell>
-                                                    <div>
-                                                    <button value={titleName} onClick={(e) => getByTitle(e.target.value)}>{titleName}
-                                                    </button>
-                                                    </div>
+
+
+                                                        <Button value={titleName}
+                                                            onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}
+                                                        </Button>
+
+       
+
                                                 </TableCell>
                                             </TableRow>
                                             )}
@@ -241,7 +305,7 @@ function Match(){
 
                       
                                 {randonArray.length == 0 ? <div> </div> :
-                                    <Card className={classes3.root}>
+                            <Card className={classes3.root} style={{ backgroundColor: color }}>
                                         <CardContent 
                                     value={randonArray[0].id}
                                             onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
@@ -260,10 +324,10 @@ function Match(){
                     <Grid item xs={2}>
 
                                 {randonArray.length == 0 ? <div> </div> :
-                                    <Card className={classes3.root}>
+                            <Card className={classes3.root} style={{ backgroundColor: color2 }}>
                                         <CardContent
                                     value={randonArray[1].id}
-                                            onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
+                                            onClick={(event) => handleClick2(event.currentTarget.getAttribute('value'))}>
                                     <Typography align="center"variant="h2" gutterBottom>
 
                                                 {randonArray[1].japanese}
@@ -280,10 +344,10 @@ function Match(){
 
                
                                 {randonArray.length == 0 ? <div> </div> :
-                                    <Card className={classes3.root}>
+                            <Card className={classes3.root} style={{ backgroundColor: color3 }}>
                                         <CardContent
                                                 value={randonArray[2].id}
-                                            onClick={(event) => handleClick(event.currentTarget.getAttribute('value'))}>
+                                            onClick={(event) => handleClick3(event.currentTarget.getAttribute('value'))}>
                                     <Typography align="center" variant="h2" gutterBottom>
 
                                                 {randonArray[2].japanese}
