@@ -27,7 +27,8 @@ import TableRow from '@material-ui/core/TableRow';
 import swal from 'sweetalert';
 
 
-
+let correction = 0;
+let incorrection = 0;
 
 
 //black border
@@ -183,6 +184,7 @@ function Quiz(){
     const [quizname, setQuizName] = useState('');
  
  
+ 
 
     //sorts an array by only its titles in alphabetical order.
     function sortArray(quiz){
@@ -206,7 +208,8 @@ function Quiz(){
     //function to pick a quiz by its title
     function getByTitle(title_name){
         setQuizName(title_name);
-       
+        correction = 0;
+        incorrection = 0;
         let title = title_name;
         let newQuiz = [];
         for(let i = 0; i < dataStore.length; i++){
@@ -241,15 +244,14 @@ function Quiz(){
     //quiz result will dispatch and the quiz will restart. 
     function handleSubmit(event) {
         event.preventDefault();
-        let correction = 0;
-        let incorrection = 0;
+ 
         //increments correct variable by 1 if answer is correct
             if(quiz[num].english == answer){
                 
                 setNewNum(num+1);
                 
                 correction = correction + 1;
-                setCorrect(correction);
+                setCorrect(correct + 1);
                 console.log("correction", correction);
                 
             }
@@ -259,7 +261,7 @@ function Quiz(){
                 setNewNum(num + 1);
                
                 incorrection = incorrection + 1;
-                setIncorrect(incorrection);
+                setIncorrect(incorrect + 1);
              
                 console.log("incorrection", incorrection);
         }
@@ -286,8 +288,7 @@ function Quiz(){
            setNewNum(0);
             setCorrect(0);
             setIncorrect(0);
-            correction = 0;
-            incorrection = 0;
+
         }
     }
  
@@ -386,7 +387,7 @@ function Quiz(){
                 </div>
 
             <div>
-            <p>Correct:{correct}</p> <p>Incorrect:{incorrect}</p>
+            <p>Correct:{correction}</p> <p>Incorrect:{incorrection}</p>
         </div>
         </div>
             }
