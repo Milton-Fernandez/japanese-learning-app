@@ -152,7 +152,7 @@ function Match(){
 
         }
         setRandonArray(randomQuizArray);
-       // setRandomNumber(Math.floor((Math.random() * (3)) + 0))
+        setRandomNumber(Math.floor((Math.random() * (3)) + 0))
         return randomQuizArray;
 
     }

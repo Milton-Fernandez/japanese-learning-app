@@ -19,8 +19,8 @@ router.get('/', (req, res) => {
 router.post('/add', (req, res) => {
     console.log('Adding data');
     const newData = req.body;
-    const queryText = `INSERT INTO "result" ("user","name","correct","incorrect","quizname") VALUES ($1,$2,$3,$4,$5); `;
-    pool.query(queryText, [newData.user, newData.name, newData.correct, newData.incorrect,newData.quizname])
+    const queryText = `INSERT INTO "result" ("user","name","correct","incorrect","quizname","date") VALUES ($1,$2,$3,$4,$5,$6); `;
+    pool.query(queryText, [newData.user, newData.name, newData.correct, newData.incorrect,newData.quizname,newData.date])
         .then(restult => {
             res.sendStatus(201);
         })

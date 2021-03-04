@@ -154,11 +154,23 @@ function Quiz(){
     const classes8 = useStyles8();
     //declared dispatch
     const dispatch = useDispatch();
+
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+  
+
+
+
     //store used for quiz
     const dataStore = useSelector(store => store.data);
   
     const user = useSelector((store) => store.user);
-    console.log(user);
+ 
 
     //declard local state and variables
     const [quiz, setNewQuiz] = useState([]);
@@ -170,7 +182,7 @@ function Quiz(){
     const titleName = sortArray(dataStore);
     const [quizname, setQuizName] = useState('');
  
-    console.log("titleTest",titleName);
+ 
 
     //sorts an array by only its titles in alphabetical order.
     function sortArray(quiz){
@@ -186,7 +198,7 @@ function Quiz(){
         titleArray.sort(function (a, b) {
             return a.length - b.length;
         });
-        console.log("titleArray", titleArray);
+    
          return titleArray;     
         
     } 
@@ -209,7 +221,7 @@ function Quiz(){
         dispatch({ type: 'FETCH_DATA' });
         return ;
     }
-    console.log("quizname", quizname);
+ 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -233,51 +245,52 @@ function Quiz(){
         let incorrection = 0;
         //increments correct variable by 1 if answer is correct
             if(quiz[num].english == answer){
-                console.log('Hey your correct');
+                
                 setNewNum(num+1);
-                setCorrect(correct+1);
+                
                 correction = correction + 1;
+                setCorrect(correction);
                 console.log("correction", correction);
                 
             }
         //decrements incorrect variable by 1 if answer is incorrect
             else{
-                console.log('incorrect');
+                
                 setNewNum(num + 1);
-                setIncorrect(incorrect + 1);
+               
                 incorrection = incorrection + 1;
-                console.log(incorrection);
+                setIncorrect(incorrection);
+             
+                console.log("incorrection", incorrection);
         }
             setAnswer('');
      
         if((quiz.length-1) == num){
-            console.log("quiz length",quiz.length);
-       
-            console.log(correction);
-            console.log(incorrection);
+           
      
-            swal({title:'Finished Quiz: ',
-            text: "Score:  " + correct + "/" + incorrect,
+           swal({title:'Finished Quiz: ',
+            text: "Score:  " + correction + "/" + incorrection,
             icon: "success"
             });
             dispatch({
                 type: 'ADD_RESULT',
                 payload: {
-                    correct: correct,
-                    incorrect: incorrect,
+                    correct: correction,
+                    incorrect: incorrection,
                     user: user.id,
                     name: user.username,
-                    quizname: quizname
+                    quizname: quizname,
+                    date: today
                 }
             });
-            setNewNum(0);
+           setNewNum(0);
             setCorrect(0);
             setIncorrect(0);
             correction = 0;
             incorrection = 0;
         }
     }
-    console.log(titles);
+ 
 
     useEffect(()=>{
         dispatch({type:'FETCH_DATA'});
@@ -357,7 +370,7 @@ function Quiz(){
 
                     <form onSubmit={handleSubmit}>
                         <TextField
-                            required
+                            //required
                             size="small"
                             id="outlined-required"
                             label="Required"
