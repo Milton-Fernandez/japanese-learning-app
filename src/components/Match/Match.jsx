@@ -67,7 +67,7 @@ const useStyles3 = makeStyles({
 //material ui for table
 const useStyles4 = makeStyles({
     root: {
-        width: '90%',
+        width: '60%',
     },
     container: {
         maxHeight: 440,
@@ -251,12 +251,14 @@ function Match(){
                 <Grid container spacing={1} justify="center" alignItems="center">
                     <Grid item xs={4}>
             
-                        <Typography variant="h4" align="center" gutterBottom>
+                        <Typography variant="h4" align="left" gutterBottom>
                             Match Game:
                         </Typography>
-                        <Typography variant="h6" align="center" gutterBottom>
-                            Select one of the sets below, then pick from the following three
-                            Japanese cards that appear on screen that
+                        <Typography variant="h6" align="left" gutterBottom>
+                            Select one of the sets below, then pick from 
+                            the following three
+                            Japanese cards that 
+                            appear on screen that
                             matches the Engish card equivalent.
                         </Typography>
 
