@@ -187,6 +187,9 @@ function Quiz(){
     const [incorrect,setIncorrect] = useState(0);
     const [titles,setTitles] = useState([]);
     const titleName = sortArray(dataStore);
+    console.log('titles',titles);
+    const sortedtitlesName = titleName.sort();
+    console.log('sorted',sortedtitlesName);
     const [quizname, setQuizName] = useState('');
  
  
@@ -330,7 +333,7 @@ function Quiz(){
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                            {titleName.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((titleName) =>
+                                            {sortedtitlesName.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((titleName) =>
                                                 <TableRow>
                                                     <TableCell>
                                                 <div className={classes4.root}>

@@ -84,6 +84,9 @@ function Match(){
     //store used for quiz
     const dataStore = useSelector(store => store.data);
     const titleName = sortArray(dataStore);
+    console.log('title',titleName);
+    const sortedTitleName = titleName.sort();
+    console.log('sorted',sortedTitleName);
     const [quiz, setNewQuiz] = useState([]);
     const [titles, setTitles] = useState([]);
     const [quizname, setQuizName] = useState('');
@@ -116,7 +119,7 @@ function Match(){
 
 
     function getByTitle(title_name) {
-        console.log("title name",title_name);
+     
         setQuizName(title_name);
         setNewColor('white');
         setNewColor2('white');
@@ -137,7 +140,6 @@ function Match(){
        //set new quiz
         setNewQuiz(newQuiz); 
         shuffle(newQuiz);
-        console.log('new shuffled Quiz',newQuiz);
         match = newQuiz.length;
         //creates a random number from quiz length, pushes array indexes into new array 
         for(let i = 0; i < 3; i++){
@@ -171,7 +173,6 @@ function Match(){
         return array;
     }
 
-  
 
 
 
@@ -185,17 +186,17 @@ function Match(){
     
     function handleClick(param){
 
-        console.log("id", param);
+      
         if(param == englishOutput.id){
             //alert('match');
-            console.log(quizname);
+           
             setNewColor('lightgreen');
             //getByTitle(quizname);
             setTimeout(function(){getByTitle(quizname)},1000);
         }
         else{
             //alert('not a match');
-            console.log(quizname);
+         
             setNewColor('red');
             setTimeout(function () { getByTitle(quizname) }, 1000);
             //getByTitle(quizname);
@@ -205,17 +206,17 @@ function Match(){
     }
     function handleClick2(param) {
 
-        console.log("id", param);
+      
         if (param == englishOutput.id) {
             //alert('match');
-            console.log(quizname);
+           
             setNewColor2('lightgreen');
             //getByTitle(quizname);
             setTimeout(function () { getByTitle(quizname) }, 1000);
         }
         else {
             //alert('not a match');
-            console.log(quizname);
+          
             setNewColor2('red');
             setTimeout(function () { getByTitle(quizname) }, 1000);
             //getByTitle(quizname);
@@ -225,17 +226,17 @@ function Match(){
     }
     function handleClick3(param) {
 
-        console.log("id", param);
+ 
         if (param == englishOutput.id) {
             //alert('match');
-            console.log(quizname);
+           
             setNewColor3('lightgreen');
             //getByTitle(quizname);
             setTimeout(function () { getByTitle(quizname) }, 1000);
         }
         else {
             //alert('not a match');
-            console.log(quizname);
+          
             setNewColor3('red');
             setTimeout(function () { getByTitle(quizname) }, 1000);
             //getByTitle(quizname);
@@ -248,7 +249,7 @@ function Match(){
         dispatch({ type: 'FETCH_DATA' });
         setTitles(sortArray(dataStore));
     }, []);
-    console.log("ransonArray",randonArray);
+  
 
 
 
@@ -293,7 +294,7 @@ function Match(){
                                         </TableRow>
                                     </TableHead>
                                         <TableBody>
-                                            {titleName.map((titleName) =>
+                                            {sortedTitleName.map((titleName) =>
                                             <TableRow>
                                                 <TableCell>
 

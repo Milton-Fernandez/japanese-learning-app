@@ -130,6 +130,9 @@ function Flashcards(){
     const [cardFlip, setNewCardFlip] = useState(true);
     const [titles, setTitles] = useState([]);
     const flashcardTitle = sortArray(dataStore);
+    console.log('flashcardtitle',flashcardTitle);
+    const sortedFlashCardTitle = flashcardTitle.sort();
+    console.log('sorted',sortedFlashCardTitle);
 //get the titles from the dataStore and puts in into an array
     function sortArray(flashcards) {
         let array = [];
@@ -199,7 +202,7 @@ function handleDecrease(number,flashcards){
                                     </TableHead>
                                     <TableBody>
       
-                                        {flashcardTitle.map((titleName) =>
+                                        {sortedFlashCardTitle.map((titleName) =>
                                             <TableRow>
                                                 <TableCell>
                                             <div className={classes.root}> 
