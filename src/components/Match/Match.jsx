@@ -136,26 +136,46 @@ function Match(){
         }
        //set new quiz
         setNewQuiz(newQuiz); 
-
+        shuffle(newQuiz);
+        console.log('new shuffled Quiz',newQuiz);
         match = newQuiz.length;
         //creates a random number from quiz length, pushes array indexes into new array 
         for(let i = 0; i < 3; i++){
-            number = Math.floor((Math.random() * (match - 1)) + 0);
-            
-            randomNumberArray.push(number);
-
-            console.log('random number array',randomNumberArray);
-
-            randomQuizArray.push(newQuiz[number]);
-
-            console.log('random quiz array',randomQuizArray);
+            randomQuizArray.push(newQuiz[i]);   
 
         }
+    
         setRandonArray(randomQuizArray);
         setRandomNumber(Math.floor((Math.random() * (3)) + 0))
         return randomQuizArray;
 
     }
+
+
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
+
+  
+
+
+
+
 
     function randomEnglishOutputFunction(array){
         let newArray = [];
