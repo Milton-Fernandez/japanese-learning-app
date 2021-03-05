@@ -48,8 +48,8 @@ const useStyles2 = makeStyles((theme: Theme) =>
 //material ui for cards
 const useStyles3 = makeStyles({
     root: {
-        width: 200,
-        height: 125
+        width: 275,
+        height: 200
     },
     bullet: {
         display: 'inline-block',
@@ -67,7 +67,7 @@ const useStyles3 = makeStyles({
 //material ui for table
 const useStyles4 = makeStyles({
     root: {
-        width: '60%',
+        width: '70%',
     },
     container: {
         maxHeight: 440,

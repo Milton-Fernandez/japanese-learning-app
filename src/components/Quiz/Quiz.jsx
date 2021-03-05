@@ -159,11 +159,17 @@ function Quiz(){
 
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); 
     var yyyy = today.getFullYear();
-
-    today = mm + '/' + dd + '/' + yyyy;
+    
   
+    today = mm + '/' + dd + '/' + yyyy;
+
+    var d = new Date(); // for now
+    d.getHours(); // => 9
+    d.getMinutes(); // =>  30
+    d.getSeconds(); // => 51
+    console.log('d',d);
 
 
 
@@ -288,6 +294,8 @@ function Quiz(){
            setNewNum(0);
             setCorrect(0);
             setIncorrect(0);
+            correction = 0;
+            incorrection = 0;
 
         }
     }
@@ -303,17 +311,17 @@ function Quiz(){
      
         <div className={classes5.root}>
             <Grid container spacing={4} justify="center" alignItems="center">
-                <Grid item xs={2}>
-                    <Typography variant="h4" align="center" gutterBottom>
+                <Grid item xs={3}>
+                    <Typography variant="h4" align="left" gutterBottom>
                         Select Quiz
                     </Typography>
 
 
 
-               
-                            <Paper className={classes8.root}>
-                                <TableContainer className={classes8.container}>
-                                    <Table stickyHeader aria-label="sticky table">
+                        
+                        <Paper align="center" className={classes8.root}>
+                            <TableContainer className={classes8.container}>
+                                    <Table stickyHeader aria-label="sticky table" >
                                         <TableHead>
                                             <TableRow>
                                                 <TableCell>
@@ -347,10 +355,10 @@ function Quiz(){
                                 </TablePagination>
                             </Paper>
 
-                
+                   
       
                 </Grid>
-                <Grid item xs={10} align="center">
+                <Grid item xs={8} align="center">
                     {quiz.length == 0?<p></p>:
                         <div>
                             <div>
@@ -359,7 +367,7 @@ function Quiz(){
 
                                         <Card className={classes6.root}>
                                              <CardContent>
-                                                <Typography variant="h1" gutterBottom>
+                                                <Typography variant="h2" gutterBottom>
                                                   
                                                        {quiz[num].japanese}
                                                 

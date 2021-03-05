@@ -180,9 +180,9 @@ function handleDecrease(number,flashcards){
         <>
         <div className={classes2.root}>
             <Grid container spacing={4} justify="center" alignItems="center">
-                <Grid item xs={2}>
-                    <Typography variant="h4" align="center" gutterBottom>
-                        Select Flashcard Set
+                <Grid item xs={3}>
+                    <Typography variant="h4" align="left" gutterBottom>
+                        Select  Flashcard 
                     </Typography>
             
 
@@ -230,7 +230,7 @@ function handleDecrease(number,flashcards){
 
 
             </Grid>
-                <Grid item xs={10} align="center">
+                <Grid item xs={8} align="center">
      
   
         {/* 
@@ -246,7 +246,7 @@ function handleDecrease(number,flashcards){
                                             <Typography>
                                                 Click Me:
                                             </Typography>
-                                            <Typography variant = "h1" onClick={() => setNewCardFlip(false)}>
+                                            <Typography variant = "h3" onClick={() => setNewCardFlip(false)}>
                                                 {flashcard[num].japanese}
                                             </Typography>
                                            
@@ -259,7 +259,7 @@ function handleDecrease(number,flashcards){
                                             <Typography>
                                                 Click Me:
                                             </Typography>
-                                            <Typography variant="h1" onClick={() => setNewCardFlip(true)}>
+                                            <Typography variant="h3" onClick={() => setNewCardFlip(true)}>
                                                 {flashcard[num].english}
                                             </Typography>
                                         </CardContent>
