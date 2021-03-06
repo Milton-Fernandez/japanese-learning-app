@@ -120,10 +120,14 @@ function Flashcards(){
 
     useEffect(() => {
         dispatch({ type: 'FLASHCARD_DATA' });
+        dispatch({ type: 'FETCH_USERCREATE_DATA' });
         setTitles(sortArray(dataStore));
     }, []);
    //declared vairables
     const dataStore = useSelector(store => store.flashcard);
+
+    const userCreated = useSelector((store) => store.usercreated);
+    const user = useSelector((store) => store.user);
     const [flashcard, setNewFlashcard] = useState([]);
     const [num, setNewNum] = useState(0);
     const [word, setNewWord] = useState('');
@@ -133,6 +137,28 @@ function Flashcards(){
     console.log('flashcardtitle',flashcardTitle);
     const sortedFlashCardTitle = flashcardTitle.sort();
     console.log('sorted',sortedFlashCardTitle);
+    const [buttonTag, setButtonTag] = useState(false);
+
+    const newArray = sortTheArray();
+    const sortedNewArray = sortArray(newArray);
+    function sortTheArray() {
+        let emptyArray = [];
+        for (let i = 0; i < userCreated.length; i++) {
+            if (userCreated[i].user == user.username) {
+                emptyArray.push(userCreated[i]);
+            }
+
+        }
+
+        return emptyArray;
+    }
+
+    console.log('usercreated', userCreated);
+
+    console.log('sorted', newArray);
+
+
+    console.log('sorted array names', sortedNewArray);
 //get the titles from the dataStore and puts in into an array
     function sortArray(flashcards) {
         let array = [];
@@ -187,12 +213,12 @@ function handleDecrease(number,flashcards){
                     <Typography variant="h4" align="left" gutterBottom>
                         Select  Flashcard 
                     </Typography>
-                        <button>
+                        <button onClick={(e) => setButtonTag(false)}>
                             Free
                     </button>
-                        <button>Personal</button>
+                        <button onClick={(e) => setButtonTag(true)}>Personal</button>
 
-
+                        {buttonTag == false ?
                         <Paper className={classes5.root}>
                             <TableContainer className={classes5.container}>
                                 <Table stickyHeader aria-label="sticky table">
@@ -233,6 +259,57 @@ function handleDecrease(number,flashcards){
                                 onChangeRowsPerPage={handleChangeRowsPerPage}>
                             </TablePagination>
                         </Paper>
+
+
+
+
+
+                       :
+
+
+                            <Paper className={classes4.root}>
+                            <TableContainer className={classes4.container}>
+                                <Table stickyHeader aria-label="sticky table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>
+                                                Selection
+                                                </TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {sortedNewArray.map((titleName) =>
+                                            <TableRow>
+                                                <TableCell>
+
+
+                                                    <Button value={titleName}
+                                                        onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}
+                                                    </Button>
+
+
+
+                                                </TableCell>
+                                            </TableRow>
+                                        )}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                            <TablePagination
+                                rowsPerPageOptions={([10, 25, 100])}
+                                component="div"
+                                count={sortedNewArray.length}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                onChangePage={handleChangePage}
+                                onChangeRowsPerPage={handleChangeRowsPerPage}>
+                            </TablePagination>
+                        </Paper>
+
+                        }
+
+
+
 
 
             </Grid>
