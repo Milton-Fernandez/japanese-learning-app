@@ -5,6 +5,7 @@ import data from './data.reducer';
 import form from './form.reducer';
 import flashcard from './flashcard.reducer';
 import result from './result.reducer';
+import usercreated from './fetch.user.created.data.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   flashcard,
   form,
   result,
+  usercreated,
  
 });
 
