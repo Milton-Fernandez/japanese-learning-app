@@ -253,10 +253,20 @@ function handlePersonalClick(){
                     <Typography variant="h4" align="left" gutterBottom>
                         Select  Flashcard 
                     </Typography>
+                        {user.id && (<>
+                            { user.admin == true ?
+                                <>
+                                </>
+                                :
+                    <div>
                         <button onClick={(e) => handleFreeClick()}>
-                            Free 
+                        Free
                     </button>
                         <button onClick={(e) => handlePersonalClick()}>Personal</button>
+                    </div>
+                            }
+                            </>
+                        )}
 
                         {buttonTag == false ?
                         <Paper className={classes5.root}>

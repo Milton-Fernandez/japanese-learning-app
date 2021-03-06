@@ -363,16 +363,22 @@ function Quiz(){
                     <Typography variant="h4" align="left" gutterBottom>
                         Select Quiz
                     </Typography>
-                        {user.id && (
+                        {user.id && (<>
+                            { user.admin == true ?
+                                <>
+                                </>
+                                :
                     <div>
                         <button onClick={(e) => handleFreeClick()}>
                         Free
                     </button>
                         <button onClick={(e) => handlePersonalClick()}>Personal</button>
                     </div>
+                            }
+                            </>
                         )}
 
-
+                            
                         {buttonTag == false ?
                         <Paper align="center" className={classes8.root}>
                             <TableContainer className={classes8.container}>

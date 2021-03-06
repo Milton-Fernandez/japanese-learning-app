@@ -19,7 +19,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
-
+import userMatch from '../UserMatch/UserMatch';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -319,18 +319,21 @@ function Match(){
                             matches the Engish card equivalent.
                         </Typography>
 
-                    {user.id &&(
+                         {user.id && (<>
+                            { user.admin == true ?
+                                <>
+                                </>
+                                :
                     <div>
                         <button onClick={(e) => handleFreeClick()}>
-                            Free
-                        </button>
-                                <button onClick={(e) => handlePersonalClick()}> 
-                            Personal
-                        </button>
-                            </div>
-            
+                        Free
+                    </button>
+                        <button onClick={(e) => handlePersonalClick()}>Personal</button>
+                    </div>
+                            }
+                            </>
+                        )}
 
-                    )}
 
 
 
@@ -422,19 +425,9 @@ function Match(){
 
                         }
 
-
-
-
-
-
-
-
-
-
-
-
                     </Grid>
                     {buttonTag == false ?
+                    
                     <>
                     <Grid item xs={2}>
 
@@ -516,7 +509,9 @@ function Match(){
               
                     </Grid>
                     </>:
-                    <div></div> 
+                    
+                    <UserMatch />
+                 
                     }
                 </Grid>
             </div>
