@@ -292,6 +292,16 @@ function Match(){
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+    
+    function handleFreeClick(){
+        setButtonTag(false);
+    }
+
+    function handlePersonalClick(){
+        setButtonTag(true)
+    }
+
+
     return(
         <>
             <div className={classes2.root}>
@@ -311,10 +321,10 @@ function Match(){
 
                     {user.id &&(
                     <div>
-                        <button onClick={(e) => setButtonTag(false)}>
+                        <button onClick={(e) => handleFreeClick()}>
                             Free
                         </button>
-                                <button onClick={(e) => setButtonTag(true)}> 
+                                <button onClick={(e) => handlePersonalClick()}> 
                             Personal
                         </button>
                             </div>

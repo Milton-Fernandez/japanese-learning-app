@@ -192,9 +192,21 @@ function Quiz(){
     console.log('sorted',sortedtitlesName);
     const [quizname, setQuizName] = useState('');
  
- 
- 
+    const [buttonTag, setButtonTag] = useState(false);
+    const userCreated = useSelector((store) => store.usercreated);
+    const newArray = sortTheArray();
+    const sortedNewArray = sortArray(newArray);
+    function sortTheArray() {
+        let emptyArray = [];
+        for (let i = 0; i < userCreated.length; i++) {
+            if (userCreated[i].user == user.username) {
+                emptyArray.push(userCreated[i]);
+            }
 
+        }
+
+        return emptyArray;
+    }
     //sorts an array by only its titles in alphabetical order.
     function sortArray(quiz){
       
@@ -234,6 +246,29 @@ function Quiz(){
         return ;
     }
  
+
+
+    function getByTitle2(title_name) {
+        setQuizName(title_name);
+        correction = 0;
+        incorrection = 0;
+        let title = title_name;
+        let newQuiz = [];
+        for (let i = 0; i < newArray.length; i++) {
+            if (newArray[i].title == title) {
+                newQuiz.push(newArray[i]);
+            }
+        }
+        setNewQuiz(newQuiz);
+        setCorrect(0);
+        setIncorrect(0);
+        setNewNum(0);
+        dispatch({ type: 'FETCH_USERCREATE_DATA' });
+        return;
+    }
+
+
+
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -307,7 +342,17 @@ function Quiz(){
     useEffect(()=>{
         dispatch({type:'FETCH_DATA'});
         setTitles(sortArray(dataStore));
+        dispatch({ type: 'FETCH_USERCREATE_DATA' });
     },[]);
+    
+    function handleFreeClick(){
+        setButtonTag(false);
+    }
+
+    function handlePersonalClick(){
+        setButtonTag(true);
+
+    }
 
     return(
         <>
@@ -318,13 +363,17 @@ function Quiz(){
                     <Typography variant="h4" align="left" gutterBottom>
                         Select Quiz
                     </Typography>
-                    <button>
+                        {user.id && (
+                    <div>
+                        <button onClick={(e) => handleFreeClick()}>
                         Free
                     </button>
-                    <button>Personal</button>
+                        <button onClick={(e) => handlePersonalClick()}>Personal</button>
+                    </div>
+                        )}
 
 
-                        
+                        {buttonTag == false ?
                         <Paper align="center" className={classes8.root}>
                             <TableContainer className={classes8.container}>
                                     <Table stickyHeader aria-label="sticky table" >
@@ -360,10 +409,53 @@ function Quiz(){
                                     onChangeRowsPerPage={handleChangeRowsPerPage}>
                                 </TablePagination>
                             </Paper>
-
-                   
+                                :
+                                <>
+                                <Paper align="center" className={classes8.root}>
+                                    <TableContainer className={classes8.container}>
+                                        <Table stickyHeader aria-label="sticky table" >
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableCell>
+                                                        Quizzes
+                                                </TableCell>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                {sortedNewArray.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((titleName) =>
+                                                    <TableRow>
+                                                        <TableCell>
+                                                            <div className={classes4.root}>
+                                                                <Button value={titleName}
+                                                                    onClick={(e) => getByTitle2(e.currentTarget.getAttribute('value'))}>{titleName}
+                                                                </Button>
+                                                            </div>
+                                                        </TableCell>
+                                                    </TableRow>
+                                                )}
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
+                                    <TablePagination
+                                        rowsPerPageOptions={([10, 25, 100])}
+                                        component="div"
+                                        count={sortedNewArray.length}
+                                        rowsPerPage={rowsPerPage}
+                                        page={page}
+                                        onChangePage={handleChangePage}
+                                        onChangeRowsPerPage={handleChangeRowsPerPage}>
+                                    </TablePagination>
+                                </Paper>
+                                
+                                </>
+                                            }
       
                 </Grid>
+
+
+
+
+
                 <Grid item xs={8} align="center">
                     {quiz.length == 0?<p></p>:
                         <div>
@@ -405,6 +497,12 @@ function Quiz(){
         </div>
         </div>
             }
+
+
+
+
+
+
 
         </Grid>
         </Grid>           
