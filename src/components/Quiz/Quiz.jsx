@@ -318,7 +318,10 @@ function Quiz(){
                     <Typography variant="h4" align="left" gutterBottom>
                         Select Quiz
                     </Typography>
-
+                    <button>
+                        Free
+                    </button>
+                    <button>Personal</button>
 
 
                         

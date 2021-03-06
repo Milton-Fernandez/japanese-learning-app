@@ -50,7 +50,7 @@ console.log(user);
              
         </Link>
             
-            {user.admin == false ? <Link></Link> :
+            {user.admin == false ? <Link className="navLink" to="/userform">Create</Link> :
 
               <Link className="navLink" to="/form">
                 Create

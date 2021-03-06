@@ -24,6 +24,8 @@ import Flashcards from '../Flashcards/Flashcards'
 import Form from '../Form/Form';
 import Results from '../Results/Results';
 import Match from '../Match/Match';
+import UserForm from '../UserForm/UserForm';
+
 
 
 import './App.css';
@@ -129,6 +131,15 @@ function App() {
           
           >
             <Form />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+
+            exact
+            path="/userform"
+
+          >
+            <UserForm />
           </ProtectedRoute>
 
           
