@@ -380,7 +380,7 @@ function Quiz(){
                                         <TableHead>
                                             <TableRow>
                                                 <TableCell>
-                                                    Quizzes
+                                                   Free Quizzes
                                                 </TableCell>
                                             </TableRow>
                                         </TableHead>
@@ -417,7 +417,7 @@ function Quiz(){
                                             <TableHead>
                                                 <TableRow>
                                                     <TableCell>
-                                                        Quizzes
+                                                       Personal Quizzes
                                                 </TableCell>
                                                 </TableRow>
                                             </TableHead>

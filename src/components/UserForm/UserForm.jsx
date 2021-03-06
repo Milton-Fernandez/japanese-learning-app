@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import CreateRow from '../CreateRow/CreateRow';
+import CreateUserRow from '../CreateUserRow/CreateUserRow';
 import React from 'react';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import Box from '@material-ui/core/Box';
@@ -192,7 +192,7 @@ console.log('sorted' ,newArray);
                                         {newArray.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => {
                                             return (
 
-                                                <CreateRow
+                                                <CreateUserRow
                                                     key={data.id}
                                                     data={data}
                                                 />

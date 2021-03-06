@@ -85,7 +85,8 @@ function CreateUserRow({ data }) {
             english: englishs,
             key: keys
         }
-        dispatch({ type: 'UPDATE_DATA', payload: dataObj });
+        dispatch({ type: 'UPDATE_USERCREATE_DATA', payload: dataObj });
+        dispatch({ type: 'FETCH_USERCREATE_DATA' });
 
     }
     const handleExit = () => {

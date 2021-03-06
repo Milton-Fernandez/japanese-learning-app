@@ -12,7 +12,8 @@ import resultSaga from './result.saga';
 import updateSaga from './update.data.saga';
 import usercreatedataSaga from './user.data'
 import addUserCreateSaga from './add.user.data';
-
+import deleteUserDataSaga from './user.delete.data';
+import updateUserSaga from './user.update.data.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -35,5 +36,7 @@ export default function* rootSaga() {
     updateSaga(),
     usercreatedataSaga(),
     addUserCreateSaga(),
+    deleteUserDataSaga(),
+    updateUserSaga(),
   ]);
 }

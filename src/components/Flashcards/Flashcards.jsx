@@ -254,7 +254,7 @@ function handlePersonalClick(){
                         Select  Flashcard 
                     </Typography>
                         <button onClick={(e) => handleFreeClick()}>
-                            Free
+                            Free 
                     </button>
                         <button onClick={(e) => handlePersonalClick()}>Personal</button>
 
@@ -265,7 +265,7 @@ function handlePersonalClick(){
                                     <TableHead>
                                         <TableRow>
                                             <TableCell>
-                                                Flashcard Sets
+                                                Free Flashcard Sets
                                                 </TableCell>
                                         </TableRow>
                                     </TableHead>
@@ -313,7 +313,7 @@ function handlePersonalClick(){
                                     <TableHead>
                                         <TableRow>
                                             <TableCell>
-                                                Selection
+                                                Personal Flashcard
                                                 </TableCell>
                                         </TableRow>
                                     </TableHead>

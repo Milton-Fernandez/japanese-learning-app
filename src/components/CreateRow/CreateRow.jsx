@@ -86,6 +86,7 @@ function CreateRow({data}){
             key: keys
         }
         dispatch({type: 'UPDATE_DATA', payload: dataObj});
+        dispatch({ type: 'FORM_DATA' });
      
     }
     const handleExit = () =>{
