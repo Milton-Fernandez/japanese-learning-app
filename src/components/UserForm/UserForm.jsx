@@ -54,17 +54,9 @@ function UserForm(){
     const dispatch = useDispatch();
     const newArray = sortTheArray();
    
-    for( let i =0; i<userCreated.length; i++){
-        if(userCreated.user == user.username){
-            console.log('test1',userCreated.user)
-            console.log('test2', user.username)
-            array.push(userCreated[i]);
 
-        }
-    }
 
-    console.log('new',newArray);
-    console.log('user',user);
+  
 
     function sortTheArray(){
         let emptyArray =[];
@@ -114,6 +106,7 @@ console.log('sorted' ,newArray);
                 user: user.username
             }
         });
+        dispatch({ type: 'FETCH_USERCREATE_DATA' });
         setNewTitle('');
         setNewJapanese('');
         setNewEnglish('');

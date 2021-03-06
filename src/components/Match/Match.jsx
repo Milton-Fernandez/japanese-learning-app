@@ -83,10 +83,12 @@ function Match(){
     const dispatch = useDispatch();
     //store used for quiz
     const dataStore = useSelector(store => store.data);
+    const userCreated = useSelector((store) => store.usercreated);
+    const user = useSelector((store) => store.user);
     const titleName = sortArray(dataStore);
-    console.log('title',titleName);
+
     const sortedTitleName = titleName.sort();
-    console.log('sorted',sortedTitleName);
+  
     const [quiz, setNewQuiz] = useState([]);
     const [titles, setTitles] = useState([]);
     const [quizname, setQuizName] = useState('');
@@ -95,6 +97,29 @@ function Match(){
     const [color, setNewColor] = useState('white');
     const [color2, setNewColor2] = useState('white');
     const [color3, setNewColor3] = useState('white');
+    const [buttonTag, setButtonTag] = useState(false);
+
+    const newArray = sortTheArray();
+    const sortedNewArray = sortArray(newArray);
+    function sortTheArray() {
+        let emptyArray = [];
+        for (let i = 0; i < userCreated.length; i++) {
+            if (userCreated[i].user == user.username) {
+                emptyArray.push(userCreated[i]);
+            }
+
+        }
+
+        return emptyArray;
+    }
+    console.log('usercreated',userCreated);
+
+    console.log('sorted', newArray);
+
+    console.log('sortedtitlename',sortedTitleName);
+
+    console.log('sorted array names', sortedNewArray);
+
     let tagColor = '';
     let match = 0;
     let englishOutput = randomEnglishOutputFunction(randonArray[randomNumber]);
@@ -248,9 +273,10 @@ function Match(){
     useEffect(() => {
         dispatch({ type: 'FETCH_DATA' });
         setTitles(sortArray(dataStore));
+        dispatch({ type: 'FETCH_USERCREATE_DATA' });
     }, []);
   
-
+  
 
 
     const [page, setPage] = React.useState(0);
@@ -282,6 +308,29 @@ function Match(){
                             appear on screen that
                             matches the Engish card equivalent.
                         </Typography>
+
+                    {user.id &&(
+                    <div>
+                        <button onClick={(e) => setButtonTag(false)}>
+                            Free
+                        </button>
+                                <button onClick={(e) => setButtonTag(true)}> 
+                            Personal
+                        </button>
+                            </div>
+            
+
+                    )}
+
+
+
+
+
+
+
+
+
+                    {buttonTag == false ?
 
                         <Paper className={classes4.root}>
                             <TableContainer className={classes4.container}>
@@ -321,9 +370,62 @@ function Match(){
                                 onChangeRowsPerPage={handleChangeRowsPerPage}>
                             </TablePagination>
                         </Paper>
-       
+                        :
+                            <Paper className={classes4.root}>
+                                <TableContainer className={classes4.container}>
+                                    <Table stickyHeader aria-label="sticky table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>
+                                                    Selection
+                                                </TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {sortedNewArray.map((titleName) =>
+                                                <TableRow>
+                                                    <TableCell>
+
+
+                                                        <Button value={titleName}
+                                                            onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}
+                                                        </Button>
+
+
+
+                                                    </TableCell>
+                                                </TableRow>
+                                            )}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                                <TablePagination
+                                    rowsPerPageOptions={([10, 25, 100])}
+                                    component="div"
+                                    count={sortedNewArray.length}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    onChangePage={handleChangePage}
+                                    onChangeRowsPerPage={handleChangeRowsPerPage}>
+                                </TablePagination>
+                            </Paper>
+
+                        }
+
+
+
+
+
+
+
+
+
+
+
 
                     </Grid>
+                    {buttonTag == false ?
+                    <>
                     <Grid item xs={2}>
 
                       
@@ -403,6 +505,9 @@ function Match(){
                         
               
                     </Grid>
+                    </>:
+                    <div></div> 
+                    }
                 </Grid>
             </div>
         </>

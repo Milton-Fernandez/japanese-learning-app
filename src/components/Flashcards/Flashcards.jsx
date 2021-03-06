@@ -187,7 +187,10 @@ function handleDecrease(number,flashcards){
                     <Typography variant="h4" align="left" gutterBottom>
                         Select  Flashcard 
                     </Typography>
-            
+                        <button>
+                            Free
+                    </button>
+                        <button>Personal</button>
 
 
                         <Paper className={classes5.root}>
