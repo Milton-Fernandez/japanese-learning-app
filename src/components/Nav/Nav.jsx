@@ -24,7 +24,7 @@ console.log(user);
       </Link>
       <div>
         <Link className="navLink" to={loginLinkData.path}>
-          {loginLinkData.text}
+          {loginLinkData.text}         
         </Link>
 
 
