@@ -138,6 +138,9 @@ function Flashcards(){
     const sortedFlashCardTitle = flashcardTitle.sort();
     console.log('sorted',sortedFlashCardTitle);
     const [buttonTag, setButtonTag] = useState(false);
+ 
+
+
 
     const newArray = sortTheArray();
     const sortedNewArray = sortArray(newArray);
@@ -153,12 +156,11 @@ function Flashcards(){
         return emptyArray;
     }
 
-    console.log('usercreated', userCreated);
+console.log('sortedNewArray',sortedNewArray);
+console.log('store',userCreated);
+console.log('newArray', newArray);
 
-    console.log('sorted', newArray);
 
-
-    console.log('sorted array names', sortedNewArray);
 //get the titles from the dataStore and puts in into an array
     function sortArray(flashcards) {
         let array = [];
@@ -167,6 +169,12 @@ function Flashcards(){
         }
         return array.filter((value, index) => array.indexOf(value) === index);
     } 
+
+
+
+
+
+
     //function to pick a quiz by its title
     function getByTitle(title_name) {
         
@@ -182,6 +190,28 @@ function Flashcards(){
         return;
     }
     console.log(flashcard);
+//function for personal information
+    function getByTitle2(title_name) {
+
+        let title = title_name;
+        let newFlashcard = [];
+        setNewNum(0);
+        for (let i = 0; i < newArray.length; i++) {
+            if (newArray[i].title == title) {
+                newFlashcard.push(newArray[i]);
+            }
+        }
+        setNewFlashcard(newFlashcard);
+        return;
+    }
+    console.log(flashcard);
+
+
+
+
+
+
+
 //handles the arrows key to traverse the array
 function handleDecrease(number,flashcards){
  
@@ -204,6 +234,16 @@ function handleDecrease(number,flashcards){
         }
 
     }
+//handleFreeClick
+function handleFreeClick(){
+
+    setButtonTag(false);
+}
+
+
+function handlePersonalClick(){
+    setButtonTag(true);
+}
 
     return(
         <>
@@ -213,10 +253,10 @@ function handleDecrease(number,flashcards){
                     <Typography variant="h4" align="left" gutterBottom>
                         Select  Flashcard 
                     </Typography>
-                        <button onClick={(e) => setButtonTag(false)}>
+                        <button onClick={(e) => handleFreeClick()}>
                             Free
                     </button>
-                        <button onClick={(e) => setButtonTag(true)}>Personal</button>
+                        <button onClick={(e) => handlePersonalClick()}>Personal</button>
 
                         {buttonTag == false ?
                         <Paper className={classes5.root}>
@@ -284,7 +324,7 @@ function handleDecrease(number,flashcards){
 
 
                                                     <Button value={titleName}
-                                                        onClick={(e) => getByTitle(e.currentTarget.getAttribute('value'))}>{titleName}
+                                                        onClick={(e) => getByTitle2(e.currentTarget.getAttribute('value'))}>{titleName}
                                                     </Button>
 
 
