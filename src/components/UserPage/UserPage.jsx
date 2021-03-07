@@ -106,7 +106,7 @@ function UserPage() {
       <h1>Welcome, {user.username}!</h1>
       <br></br>
      
-      <h3> Quiz Results For: {user.username}!</h3>
+      <h3> Quiz Results </h3>
       <br></br>
 
       <Paper className={classes.root}>

@@ -170,7 +170,10 @@ function Quiz(){
     d.getMinutes(); // =>  30
     d.getSeconds(); // => 51
     console.log('d',d);
-
+    let b = new Date().toLocaleTimeString(); // 11:18:48 AM
+    console.log('time',b);
+    let timeDate = b + ' ' + today;
+    console.log('timedate', timeDate);
 
 
     //store used for quiz
@@ -326,7 +329,7 @@ function Quiz(){
                     user: user.id,
                     name: user.username,
                     quizname: quizname,
-                    date: today
+                    date: timeDate
                 }
             });
            setNewNum(0);
