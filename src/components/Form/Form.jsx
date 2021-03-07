@@ -18,7 +18,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
-
+import UserForm from '../UserForm/UserForm';
 const useStyles = makeStyles({
     root: {
         width: '90%',
@@ -61,6 +61,7 @@ function Form(){
   
     useEffect(() => {
         dispatch({ type: 'FORM_DATA' });
+         dispatch({ type: 'FETCH_USERCREATE_DATA' });
     }, []);
     const dataStore = useSelector(store => store.form);
     const [newTitle,setNewTitle] = useState('');
@@ -108,7 +109,7 @@ function Form(){
             justify="center"
         >
         <Grid item xs={12}>
-        <h2>Enter New Data:</h2>
+        <h2>Admin Enter New Data:</h2>
         <form onSubmit={handleSubmit}> 
 
 
@@ -199,6 +200,7 @@ function Form(){
             </Paper>
             </Grid>
             </Grid>
+            <UserForm />
             </div>
         </>
     )

@@ -254,17 +254,14 @@ function handlePersonalClick(){
                         Select  Flashcard 
                     </Typography>
                         {user.id && (<>
-                            { user.admin == true ?
-                                <>
-                                </>
-                                :
+                         
                     <div>
                         <button onClick={(e) => handleFreeClick()}>
                         Free
                     </button>
                         <button onClick={(e) => handlePersonalClick()}>Personal</button>
                     </div>
-                            }
+                            
                             </>
                         )}
 

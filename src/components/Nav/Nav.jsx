@@ -45,11 +45,7 @@ console.log(user);
               Info Page
           </Link> */}
           
-            <Link className="navLink" to="/results">
-              Quiz Results
-             
-        </Link>
-            
+
             {user.admin == false ? <Link className="navLink" to="/userform">Create</Link> :
 
               <Link className="navLink" to="/form">

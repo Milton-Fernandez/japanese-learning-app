@@ -319,6 +319,8 @@ function Match(){
                             matches the Engish card equivalent.
                         </Typography>
 
+                {/*
+
                          {user.id && (<>
                             { user.admin == true ?
                                 <>
@@ -335,7 +337,7 @@ function Match(){
                         )}
 
 
-
+                                */}
 
 
 

@@ -364,17 +364,14 @@ function Quiz(){
                         Select Quiz
                     </Typography>
                         {user.id && (<>
-                            { user.admin == true ?
-                                <>
-                                </>
-                                :
+     
                     <div>
                         <button onClick={(e) => handleFreeClick()}>
                         Free
                     </button>
                         <button onClick={(e) => handlePersonalClick()}>Personal</button>
                     </div>
-                            }
+                            
                             </>
                         )}
 
