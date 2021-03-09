@@ -369,10 +369,10 @@ function Quiz(){
                         {user.id && (<>
      
                     <div>
-                        <button onClick={(e) => handleFreeClick()}>
+                        <Button  variant="contained" onClick={(e) => handleFreeClick()}>
                         Free
-                    </button>
-                        <button onClick={(e) => handlePersonalClick()}>Personal</button>
+                    </Button>
+                        <Button  variant="contained" onClick={(e) => handlePersonalClick()}>Personal</Button>
                     </div>
                             
                             </>
