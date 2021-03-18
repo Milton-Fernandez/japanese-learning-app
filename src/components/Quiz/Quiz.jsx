@@ -318,7 +318,7 @@ function Quiz(){
            
      
            swal({title:'Finished Quiz: ',
-            text: "Score:  " + correction + "/" + incorrection,
+            text: "Correct:" + correction + "  Incorrect:" + incorrection,
             icon: "success"
             });
             dispatch({
